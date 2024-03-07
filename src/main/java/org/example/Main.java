@@ -1,7 +1,21 @@
 package org.example;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Main extends Application {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        launch(args);
+    }
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/login.fxml"));
+        Object load = loader.load();
+        Scene scene = new Scene((Parent) load);
+        stage.setScene(scene);
+        stage.show();
     }
 }

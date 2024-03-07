@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="640.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SignUpController">
-
+<AnchorPane prefHeight="500.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.SignUpController">
+   <children>
+      <TextField fx:id="txtName" layoutX="104.0" layoutY="152.0" prefHeight="25.0" prefWidth="533.0" promptText="Name" />
+      <TextField fx:id="txtUserName" layoutX="103.0" layoutY="243.0" promptText="User Name" />
+      <CheckBox fx:id="chkTerms" layoutX="103.0" layoutY="378.0" mnemonicParsing="false" text="Agree to terms and conditions" />
+      <JFXButton buttonType="RAISED" layoutX="425.0" layoutY="432.0" onAction="#signUpOnAction" style="-fx-background-color: lime;" text="SignUp" />
+      <JFXButton buttonType="RAISED" layoutX="519.0" layoutY="433.0" onAction="#cancelOnAction" style="-fx-background-color: violet;" text="Cancel" />
+      <PasswordField fx:id="txtPassword" layoutX="103.0" layoutY="286.0" promptText="Create Password" />
+      <PasswordField fx:id="txtConfPassword" layoutX="103.0" layoutY="325.0" promptText="Confirm Password" />
+      <TextField fx:id="txtEmail" layoutX="104.0" layoutY="200.0" prefHeight="25.0" prefWidth="533.0" promptText="Email" />
+   </children>
 </AnchorPane>
