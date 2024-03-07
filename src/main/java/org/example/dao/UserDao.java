@@ -8,4 +8,6 @@ public interface UserDao extends SuperDao{
     boolean saveUser(User user);
 
     boolean exists();
+
+    User search(String userName);
 }

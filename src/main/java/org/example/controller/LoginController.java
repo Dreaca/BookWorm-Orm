@@ -28,7 +28,13 @@ public class LoginController {
 
     @FXML
     void loginOnAction(ActionEvent event) {
-
+        String userName = txtUsername.getText();
+        String password = txtPassword.getText();
+        if (bo.validate(userName,password)) {
+            Stage window = (Stage) txtUsername.getScene().getWindow();
+            window.close();
+            new Alert(Alert.AlertType.CONFIRMATION,"Login success").show();
+        }
     }
     LoginBo bo = (LoginBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.LOGIN);
     @FXML
@@ -41,13 +47,13 @@ public class LoginController {
         stage.show();
     }
     public void initialize(){
-        boolean b = bo.checkAdmin();
+        /*boolean b = bo.checkAdmin();
         if (!b){
             Alert alert = new Alert(Alert.AlertType.WARNING, "NO ADMIN DETECTED", new ButtonType("New Admin"));
             alert.showAndWait().ifPresent(response ->{
                 System.out.println("working");
             });
-        }
+        }*/
     }
 
 }

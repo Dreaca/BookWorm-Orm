@@ -55,4 +55,16 @@ public class UserDaoImpl implements UserDao{
         else return true;
 
     }
+
+    @Override
+    public User search(String userName) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from User where userName = ?1");
+        query.setParameter(1,userName);
+        Object o = query.uniqueResult();
+       transaction.commit();
+       session.close();
+       return (User) o;
+    }
 }
