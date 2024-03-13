@@ -7,8 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.SaveBranchBo;
-import org.example.dao.DaoFactory;
-import org.example.dao.custom.BranchDao;
 import org.example.dto.BranchDto;
 
 public class AddBranchController {
@@ -26,6 +24,10 @@ public class AddBranchController {
         String branchMan= txtBranchMan.getText();
 
         boolean b = bo.saveBranch(new BranchDto(location,bookNo,branchMan));
+        if (b) {
+            Stage stage = (Stage) txtBranchMan.getScene().getWindow();
+            stage.close();
+        }
 
     }
 
@@ -34,6 +36,5 @@ public class AddBranchController {
         stage.close();
     }
     public void initialize(){
-//        txtBranchId.setText(bo.getNextBranchId());
     }
 }

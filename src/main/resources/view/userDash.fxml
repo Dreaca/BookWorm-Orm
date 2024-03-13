@@ -17,15 +17,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="2.0" layoutY="57.0" prefHeight="464.0" prefWidth="931.0">
+                        <TableView fx:id="booktbl" layoutX="2.0" layoutY="57.0" prefHeight="464.0" prefWidth="931.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Book_ID" />
-                            <TableColumn prefWidth="206.88885498046875" text="Title" />
-                              <TableColumn prefWidth="214.44439697265625" text="Author" />
-                              <TableColumn prefWidth="117.11114501953125" text="Genre" />
-                              <TableColumn prefWidth="90.4444580078125" text="Availability" />
-                              <TableColumn prefWidth="111.333251953125" text="Branch" />
-                              <TableColumn prefWidth="101.111083984375" text="Option" />
+                            <TableColumn fx:id="bookId" prefWidth="75.0" text="Book_ID" />
+                            <TableColumn fx:id="bookTitle" prefWidth="206.88885498046875" text="Title" />
+                              <TableColumn fx:id="bookAuthor" prefWidth="214.44439697265625" text="Author" />
+                              <TableColumn fx:id="bookGenre" prefWidth="117.11114501953125" text="Genre" />
+                              <TableColumn fx:id="bookAvailability" prefWidth="90.4444580078125" text="Availability" />
+                              <TableColumn fx:id="bookBranch" prefWidth="111.333251953125" text="Branch" />
+                              <TableColumn fx:id="bookOptions" prefWidth="101.111083984375" text="Option" />
                           </columns>
                         </TableView>
                         <TextField layoutX="8.0" layoutY="14.0" prefHeight="25.0" prefWidth="735.0" promptText="Search for a book ....." />

@@ -27,7 +27,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="16.0" layoutY="45.0" prefHeight="520.0" prefWidth="769.0">
+                        <TableView fx:id="branchTable" layoutX="16.0" layoutY="45.0" prefHeight="520.0" prefWidth="769.0">
                           <columns>
                             <TableColumn fx:id="branchesColBranchId" prefWidth="108.66668701171875" text="Branch_ID" />
                             <TableColumn fx:id="branchesColLocation" prefWidth="117.3333740234375" text="Location" />
@@ -38,6 +38,7 @@
                           </columns>
                         </TableView>
                         <JFXButton layoutX="641.0" layoutY="14.0" onAction="#addNewBranchOnAction" prefHeight="25.0" prefWidth="151.0" text="New Branch" />
+                        <JFXButton layoutX="16.0" layoutY="14.0" onAction="#reloadOnAction" text="Reload" />
                      </children>
                   </AnchorPane>
             </content>
@@ -46,7 +47,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="25.0" layoutY="75.0" prefHeight="480.0" prefWidth="889.0">
+                        <TableView fx:id="userTable" layoutX="25.0" layoutY="75.0" prefHeight="480.0" prefWidth="889.0">
                           <columns>
                             <TableColumn fx:id="UserColUID" prefWidth="75.0" text="User_ID" />
                             <TableColumn fx:id="UserColUname" prefWidth="155.333251953125" text="User Name" />

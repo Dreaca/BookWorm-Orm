@@ -1,9 +1,7 @@
 package org.example.bo;
 
 import org.example.bo.custom.SuperBo;
-import org.example.bo.custom.impl.LoginBoImpl;
-import org.example.bo.custom.impl.SaveBranchBoImpl;
-import org.example.bo.custom.impl.SignUpBoImpl;
+import org.example.bo.custom.impl.*;
 
 public class BoFactory {
 
@@ -19,6 +17,10 @@ public class BoFactory {
                 return new LoginBoImpl();
             case SAVE_BRANCH:
                 return new SaveBranchBoImpl();
+            case ADMIN:
+                return new AdminDashBoImpl();
+            case USERDASH:
+                return new UserDashBoImpl();
             default:
                 return null;
         }
@@ -30,6 +32,6 @@ public class BoFactory {
     }
 
     public static enum BoTypes {
-        SIGN_UP,LOGIN,SAVE_BRANCH
+        SIGN_UP,LOGIN,SAVE_BRANCH,ADMIN,USERDASH
     }
 }

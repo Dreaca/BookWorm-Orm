@@ -1,5 +1,6 @@
 package org.example.dao;
 
+import org.example.dao.custom.impl.BooksDaoImpl;
 import org.example.dao.custom.impl.BranchDaoImpl;
 import org.example.dao.custom.impl.UserDaoImpl;
 
@@ -9,7 +10,7 @@ public class DaoFactory {
     public static DaoFactory daoFactory;
 
     public static enum Daotype{
-        USER,BRANCH
+        USER,BRANCH,BOOKS
     }
 
     public SuperDao getDao(Daotype daotype){
@@ -18,6 +19,8 @@ public class DaoFactory {
                 return new UserDaoImpl();
             case BRANCH:
                 return new BranchDaoImpl();
+            case BOOKS:
+                return new BooksDaoImpl();
             default:
                 return null;
         }

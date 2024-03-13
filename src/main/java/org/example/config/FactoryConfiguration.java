@@ -2,6 +2,7 @@ package org.example.config;
 
 
 
+import org.example.entity.Book;
 import org.example.entity.Branch;
 import org.example.entity.Log;
 import org.example.entity.User;
@@ -14,8 +15,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class FactoryConfiguration {
-    public static FactoryConfiguration factoryConfiguration;
-    public static SessionFactory session;
+    private static FactoryConfiguration factoryConfiguration;
+    private static SessionFactory session;
 
     private FactoryConfiguration(){
         Properties properties = new Properties();
@@ -26,7 +27,7 @@ public class FactoryConfiguration {
         }
         Configuration configuration = new Configuration()
                 .addProperties(properties)
-                .addAnnotatedClass(User.class).addAnnotatedClass(Branch.class)
+                .addAnnotatedClass(User.class).addAnnotatedClass(Branch.class).addAnnotatedClass(Book.class)
                 .addAnnotatedClass(Log.class);
         session = configuration.buildSessionFactory();
     }

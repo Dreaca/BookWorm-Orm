@@ -1,11 +1,16 @@
 package org.example.dao.custom.impl;
 
+import javafx.scene.control.Alert;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.UserDao;
+import org.example.entity.Branch;
 import org.example.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.String.format;
 
@@ -22,6 +27,7 @@ public class UserDaoImpl implements UserDao {
             userId = "USER1";
         } else {
             String user = o.toString();
+            System.out.println(user);
             String[] userIds = user.split("USER");
             int id = Integer.parseInt(userIds[1]);
             id++;
@@ -46,14 +52,17 @@ public class UserDaoImpl implements UserDao {
     public boolean exists() {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        Query query = session.createQuery(" select userId from User order by userId asc limit 1");
-        Object singleResult = query.getSingleResult();
-        transaction.commit();
-        session.close();
-        if (!String.valueOf(singleResult).startsWith("ADMIN")) {
+        try {
+            Query query = session.createQuery(" select userId from User order by userId asc limit 1");
+            Object singleResult = query.getSingleResult();
+            transaction.commit();
+            session.close();
+            if (!String.valueOf(singleResult).startsWith("ADMIN")) {
+                return false;
+            } else return true;
+        }catch (Exception e){
             return false;
-        } else return true;
-
+        }
     }
 
     @Override
@@ -88,5 +97,25 @@ public class UserDaoImpl implements UserDao {
         transaction.commit();
         session.close();
         return userId;
+    }
+
+    @Override
+    public List<User> getAll() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<User> userList;
+        try {
+            userList = session.createQuery("FROM User", User.class).list();
+        }
+        catch (Exception exception){
+            new Alert(Alert.AlertType.WARNING,"NO data in Branches").show();
+            userList = new ArrayList<>();
+        }
+
+        transaction.commit();
+        session.close();
+
+        return userList;
     }
 }

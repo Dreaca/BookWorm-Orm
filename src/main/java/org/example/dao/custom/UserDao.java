@@ -3,6 +3,8 @@ package org.example.dao.custom;
 import org.example.dao.SuperDao;
 import org.example.entity.User;
 
+import java.util.List;
+
 public interface UserDao extends SuperDao {
     String getUserId();
 
@@ -14,4 +16,5 @@ public interface UserDao extends SuperDao {
 
     String getAdminId();
 
+    List<User> getAll();
 }

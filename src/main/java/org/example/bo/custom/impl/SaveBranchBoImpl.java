@@ -16,7 +16,8 @@ public class SaveBranchBoImpl implements SaveBranchBo {
 
     @Override
     public boolean saveBranch(BranchDto branchDto) {
-        dao.saveBranch(new Branch(getNextBranchId()
+        String branchid = getNextBranchId();
+        dao.saveBranch(new Branch(branchid
         , branchDto.getLocation(),branchDto.getBookNo(),branchDto.getBranchMan()
         ));
         return true;
