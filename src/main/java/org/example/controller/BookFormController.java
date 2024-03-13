@@ -1,11 +1,20 @@
 package org.example.controller;
 
+import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.bo.BoFactory;
+import org.example.bo.custom.AdminDashBo;
+import org.example.dto.BookDto;
+import org.example.model.BookTm;
+
+import java.util.List;
 
 public class BookFormController {
 
@@ -31,13 +40,15 @@ public class BookFormController {
     private TableColumn<?, ?> bookTitle;
 
     @FXML
-    private TableView<?> booktbl;
+    private TableView<BookTm> booktbl;
 
     @FXML
     private Label txtBranchId;
 
     @FXML
     private Label txtBranchName;
+
+    private AdminDashBo bo = (AdminDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.ADMIN);
 
     @FXML
     void addNewBookOnAction(ActionEvent event) {
@@ -54,6 +65,7 @@ public class BookFormController {
     }
     public void initialize(){
         setCellValueFactory();
+        loadBooks();
     }
     public void setCellValueFactory(){
         bookId.setCellValueFactory(new PropertyValueFactory<>("bookId"));
@@ -65,6 +77,23 @@ public class BookFormController {
         bookOptions.setCellValueFactory(new PropertyValueFactory<>("button"));
     }
     public void loadBooks(){
+        ObservableList<BookTm> oblist = FXCollections.observableArrayList();
+        List<BookDto> list = bo.getAllBooksofThisBranch(txtBranchId.getText());
+        for(BookDto dto : list){
+            oblist.add(
+                    new BookTm(
+                            dto.getBookId(),
+                            dto.getTitle(),
+                            dto.getAuthor(),
+                            dto.getGenre(),
+                            dto.isAvailability(),
+                            dto.getBranchName(),
+                            new JFXButton()
+                    )
+            );
+        }
+        booktbl.setItems(oblist);
+        booktbl.refresh();
 
     }
 

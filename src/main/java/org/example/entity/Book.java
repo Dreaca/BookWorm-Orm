@@ -1,6 +1,12 @@
 package org.example.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.List;
 
 @Entity
 public class Book {
@@ -13,6 +19,10 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "branchId",referencedColumnName = "branchId")
     private Branch branch;
+    @OneToMany(mappedBy = "book")
+    @Cascade(CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Log> logs;
 
     @Override
     public String toString() {

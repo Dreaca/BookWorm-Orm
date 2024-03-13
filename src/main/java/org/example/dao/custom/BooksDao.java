@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BooksDao extends SuperDao {
     List<Book> getAll();
+
+    List<Book> getBranchBooks(String branchId);
 }

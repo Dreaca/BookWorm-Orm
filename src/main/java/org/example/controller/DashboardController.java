@@ -24,6 +24,7 @@ import java.util.Optional;
 public class DashboardController {
 
     //BranchTable
+    public TableView branchTable;
     public TableColumn branchesColBranchId;
     public TableColumn branchesColLocation;
     public TableColumn branchesColNoOfBooks;
@@ -32,6 +33,7 @@ public class DashboardController {
     public TableColumn branchesColBooks;
 
     //UserTable
+    public TableView userTable;
     public TableColumn UserColUID;
     public TableColumn UserColUname;
     public TableColumn userColName;
@@ -47,8 +49,6 @@ public class DashboardController {
     public TableColumn logColRetDate;
     public TableColumn logColStatus;
     public TableColumn logColOptions;
-    public TableView branchTable;
-    public TableView userTable;
 
     AdminDashBo bo = (AdminDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.ADMIN);
 
