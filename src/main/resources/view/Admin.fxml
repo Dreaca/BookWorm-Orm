@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="640.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.DashboardController">
+   <children>
+      <AnchorPane layoutX="8.0" layoutY="6.0" prefHeight="623.0" prefWidth="320.0" style="-fx-background-color: blue;">
+         <children>
+            <Label layoutX="116.0" layoutY="7.0" text="Profile pane" />
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="59.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" />
+            <Label layoutX="62.0" layoutY="230.0" prefHeight="17.0" prefWidth="186.0" text="Name" />
+            <Label layoutX="62.0" layoutY="256.0" prefHeight="17.0" prefWidth="186.0" text="User Name" />
+            <Label layoutX="60.0" layoutY="306.0" prefHeight="17.0" prefWidth="186.0" text="Password" />
+            <Label layoutX="61.0" layoutY="283.0" prefHeight="17.0" prefWidth="186.0" text="Email" />
+         </children>
+      </AnchorPane>
+      <TabPane layoutX="337.0" layoutY="7.0" prefHeight="619.0" prefWidth="933.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Branches">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="16.0" layoutY="45.0" prefHeight="520.0" prefWidth="769.0">
+                          <columns>
+                            <TableColumn fx:id="branchesColBranchId" prefWidth="108.66668701171875" text="Branch_ID" />
+                            <TableColumn fx:id="branchesColLocation" prefWidth="117.3333740234375" text="Location" />
+                              <TableColumn fx:id="branchesColNoOfBooks" prefWidth="139.33331298828125" text="No. Books" />
+                              <TableColumn fx:id="branchesColBM" prefWidth="230.0" text="Branch Manager / Librarian" />
+                              <TableColumn fx:id="branchesMod" prefWidth="75.0" text=" " />
+                              <TableColumn fx:id="branchesColBooks" prefWidth="103.99995930989587" text="Books" />
+                          </columns>
+                        </TableView>
+                        <JFXButton layoutX="641.0" layoutY="14.0" onAction="#addNewBranchOnAction" prefHeight="25.0" prefWidth="151.0" text="New Branch" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="25.0" layoutY="75.0" prefHeight="480.0" prefWidth="889.0">
+                          <columns>
+                            <TableColumn fx:id="UserColUID" prefWidth="75.0" text="User_ID" />
+                            <TableColumn fx:id="UserColUname" prefWidth="155.333251953125" text="User Name" />
+                              <TableColumn fx:id="userColName" prefWidth="220.6666259765625" text="Name" />
+                              <TableColumn fx:id="userColEmail" prefWidth="238.4444580078125" text="Email" />
+                              <TableColumn fx:id="userColMod" prefWidth="77.5555419921875" text="Modify" />
+                              <TableColumn fx:id="userColDet" prefWidth="98.444580078125" text="Details" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Log Book">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="25.0" layoutY="70.0" prefHeight="500.0" prefWidth="875.0">
+                          <columns>
+                            <TableColumn fx:id="LogTID" prefWidth="114.44442749023438" text="TransactionID" />
+                            <TableColumn fx:id="logColBookName" prefWidth="109.3333740234375" text="Book_Name" />
+                              <TableColumn fx:id="logColUserName" prefWidth="114.44439697265625" text="User_Name" />
+                              <TableColumn fx:id="logBorrowDate" prefWidth="132.22222900390625" text="Borrowed_Date" />
+                              <TableColumn fx:id="logColRetDate" prefWidth="144.666748046875" text="Return_Date" />
+                              <TableColumn fx:id="logColStatus" prefWidth="129.99993896484375" text="Status" />
+                              <TableColumn fx:id="logColOptions" prefWidth="126.66670735677087" text="Options" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

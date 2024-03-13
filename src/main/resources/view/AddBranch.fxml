@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="301.0" prefWidth="319.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AddBranchController">
+   <children>
+      <Label layoutX="39.0" layoutY="31.0" text="Branch ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="txtBranchId" layoutX="154.0" layoutY="32.0" text="Branch ID :">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtLocation" layoutX="39.0" layoutY="82.0" prefHeight="25.0" prefWidth="239.0" promptText="Location" />
+      <TextField fx:id="txtNoBooks" layoutX="39.0" layoutY="128.0" prefHeight="25.0" prefWidth="239.0" promptText="Number of books" />
+      <TextField fx:id="txtBranchMan" layoutX="39.0" layoutY="181.0" prefHeight="25.0" prefWidth="239.0" promptText="Branch Manager" />
+      <JFXButton fx:id="btnSave" layoutX="227.0" layoutY="244.0" onAction="#saveOnAction" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: blue;" text="Save" />
+      <JFXButton layoutX="159.0" layoutY="244.0" style="-fx-background-color: red;" text="Cancel" onAction="#cancelOnAction" />
+   </children>
+</AnchorPane>

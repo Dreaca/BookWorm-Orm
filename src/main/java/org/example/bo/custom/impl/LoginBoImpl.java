@@ -2,7 +2,7 @@ package org.example.bo.custom.impl;
 
 import org.example.bo.custom.LoginBo;
 import org.example.dao.DaoFactory;
-import org.example.dao.UserDao;
+import org.example.dao.custom.UserDao;
 import org.example.entity.User;
 
 public class LoginBoImpl implements LoginBo {
@@ -17,5 +17,14 @@ public class LoginBoImpl implements LoginBo {
     public boolean validate(String userName, String password) {
         User search = dao.search(userName);
         return search.getPassWord().equals(password);
+    }
+
+    @Override
+    public String checkUser(String userName) {
+        User search = dao.search(userName);
+        if (search.getUserId().startsWith("ADMIN")){
+            return "ADMIN";
+        }
+        else return "USER";
     }
 }

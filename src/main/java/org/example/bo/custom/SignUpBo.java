@@ -4,4 +4,6 @@ import org.example.dto.UserDto;
 
 public interface SignUpBo extends SuperBo {
     boolean saveUser(UserDto userDto);
+
+    boolean saveAdmin(UserDto userDto);
 }
