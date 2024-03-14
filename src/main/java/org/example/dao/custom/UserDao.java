@@ -17,4 +17,6 @@ public interface UserDao extends SuperDao {
     String getAdminId();
 
     List<User> getAll();
+
+    void update(User user);
 }

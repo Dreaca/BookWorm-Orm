@@ -9,10 +9,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.AdminDashBo;
 import org.example.dto.LogDto;
+import org.example.dto.UserDto;
 import org.example.entity.Branch;
 import org.example.entity.User;
 import org.example.model.BranchTM;
@@ -52,6 +54,19 @@ public class DashboardController {
     public TableColumn logColStatus;
     public TableColumn logColOptions;
     public TableView logTable;
+    public JFXButton btnProfCancel;
+    public JFXButton editDone;
+    public TextField changePass;
+    public TextField changeEmail;
+    public TextField changeName;
+    public TextField changeUName;
+    public Label txtPassWord;
+    public Label txtEmail;
+    public Label txtName;
+    public Label txtUName;
+    public Label txtUID;
+    public Label txtUserName;
+    public AnchorPane root;
 
     AdminDashBo bo = (AdminDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.ADMIN);
 
@@ -263,5 +278,61 @@ public class DashboardController {
 
     public void reloadOnAction(ActionEvent actionEvent) {
         loadBranches();
+    }
+
+    public void editOnAction(ActionEvent actionEvent) {
+
+        changeEmail.setVisible(true);
+        changeName.setVisible(true);
+        changeUName.setVisible(true);
+        changePass.setVisible(true);
+        btnProfCancel.setVisible(true);
+        editDone.setVisible(true);
+
+        changeEmail.setText(txtEmail.getText());
+        changeName.setText(txtName.getText());
+        changeUName.setText(txtUName.getText());
+        changePass.setText(txtPassWord.getText());
+    }
+
+    public void updateUser(ActionEvent actionEvent) {
+        bo.updateUser(new UserDto(txtUID.getText(),
+                changeUName.getText(),
+                changeName.getText(),
+                changeEmail.getText(),
+                changePass.getText()
+        ));
+        setUp(changeUName.getText());
+        changeEmail.setVisible(false);
+        changeName.setVisible(false);
+        changeUName.setVisible(false);
+        changePass.setVisible(false);
+        btnProfCancel.setVisible(false);
+        editDone.setVisible(false);
+
+    }
+
+    public void logoutOnAction(ActionEvent actionEvent) {
+        Stage window = (Stage) root.getScene().getWindow();
+        window.close();
+    }
+
+    public void cancelUpdate(ActionEvent actionEvent) {
+        changeEmail.setVisible(false);
+        changeName.setVisible(false);
+        changeUName.setVisible(false);
+        changePass.setVisible(false);
+        btnProfCancel.setVisible(false);
+        editDone.setVisible(false);
+    }
+    public void setUp(String userName){
+        UserDto user = bo.getUser(userName);
+        txtUID.setText(user.getUserId());
+        txtUserName.setText(user.getUserName());
+        txtName.setText(user.getName());
+        txtPassWord.setText(user.getPassword());
+        txtEmail.setText(user.getEmail());
+        txtUName.setText(user.getUserName());
+        loadLogs();
     }
 }

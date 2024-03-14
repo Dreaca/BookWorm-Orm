@@ -12,6 +12,8 @@ import org.example.entity.Book;
 import org.example.entity.Log;
 import org.example.entity.User;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,5 +63,36 @@ public class UserDashBoImpl implements UserDashBo {
             );
         }
         return loglist;
+    }
+
+    @Override
+    public boolean addLog(String bookId, String text) {
+        String Tid = log.getNextTid();
+        Book search = dao.search(bookId);
+        User searched = user.search(text);
+        LocalDate currentDate = LocalDate.now();
+        LocalDate expirationDate = currentDate.plusDays(7); // Adding 7 days to the current date
+
+        Log newLog = new Log(Tid, search, searched,
+                currentDate,
+                expirationDate,
+                false);
+        try {
+        log.save(newLog);}
+        catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        user.update(new User(
+           userDto.getUserId(),
+           userDto.getUserName(),
+           userDto.getName(),
+           userDto.getEmail(),
+           userDto.getPassword()
+        ));
     }
 }

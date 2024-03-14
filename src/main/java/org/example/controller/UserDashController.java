@@ -8,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.UserDashBo;
 import org.example.dto.BookDto;
@@ -33,6 +36,13 @@ public class UserDashController {
     public Label txtName;
     public Label txtEmail;
     public Label txtPassWord;
+    public TextField changeUName;
+    public TextField changeName;
+    public TextField changeEmail;
+    public TextField changePass;
+    public JFXButton editDone;
+    public JFXButton btnProfCancel;
+    public AnchorPane root;
     @FXML
     private TableColumn<?, ?> bookAuthor;
 
@@ -80,13 +90,29 @@ public class UserDashController {
                         dto.getGenre(),
                         dto.isAvailability(),
                         dto.getBranchName(),
-                        new JFXButton()
+                        loadJFXButton()
                     )
             );
+        }
+        for (int i = 0; i < oblist.size(); i++) {
+            JFXButton bt =   oblist.get(i).getButton();
+            int finalI = i;
+            bt.setOnAction(actionEvent -> {
+                boolean b = bo.addLog(oblist.get(finalI).getBookId(), txtUName.getText());
+                if (b){ bt.setStyle("-fx-background-color: green");
+                bt.setText("borrowed");
+                bt.setDisable(true);
+                }
+                loadLogs();
+            });
         }
         booktbl.setItems(oblist);
         booktbl.refresh();
 
+    }
+
+    private JFXButton loadJFXButton() {
+            return new JFXButton("burrow");
     }
 
     public void setCellValueFactory(){
@@ -130,5 +156,51 @@ public class UserDashController {
         txtEmail.setText(user.getEmail());
         txtUName.setText(user.getUserName());
         loadLogs();
+    }
+
+    public void updateUser(ActionEvent actionEvent) {
+        bo.updateUser(new UserDto(txtUID.getText(),
+                changeUName.getText(),
+                changeName.getText(),
+                changeEmail.getText(),
+                changePass.getText()
+        ));
+        setUp(changeUName.getText());
+        changeEmail.setVisible(false);
+        changeName.setVisible(false);
+        changeUName.setVisible(false);
+        changePass.setVisible(false);
+        btnProfCancel.setVisible(false);
+        editDone.setVisible(false);
+
+    }
+
+    public void editOnAction(ActionEvent actionEvent) {
+        changeEmail.setVisible(true);
+        changeName.setVisible(true);
+        changeUName.setVisible(true);
+        changePass.setVisible(true);
+        btnProfCancel.setVisible(true);
+        editDone.setVisible(true);
+
+        changeEmail.setText(txtEmail.getText());
+        changeName.setText(txtName.getText());
+        changeUName.setText(txtUName.getText());
+        changePass.setText(txtPassWord.getText());
+    }
+
+    public void logoutOnAction(ActionEvent actionEvent) {
+        Stage window = (Stage) root.getScene().getWindow();
+        window.close();
+    }
+
+    public void cancelUpdate(ActionEvent actionEvent) {
+        changeEmail.setVisible(false);
+        changeName.setVisible(false);
+        changeUName.setVisible(false);
+        changePass.setVisible(false);
+        btnProfCancel.setVisible(false);
+        editDone.setVisible(false);
+
     }
 }

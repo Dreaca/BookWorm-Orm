@@ -13,4 +13,6 @@ public interface BooksDao extends SuperDao {
     String getNextBookId();
 
     void save(Book book);
+
+    Book search(String bookId);
 }

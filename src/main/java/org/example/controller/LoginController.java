@@ -31,7 +31,7 @@ public class LoginController {
             Stage window = (Stage) txtUsername.getScene().getWindow();
             window.close();
             if (bo.checkUser(userName).equals("ADMIN")){
-                loadAdminDash();
+                loadAdminDash(userName);
             }
             else{
                 loadUserDash(userName);
@@ -50,9 +50,11 @@ public class LoginController {
         stage.show();
     }
 
-    private void loadAdminDash() throws IOException {
+    private void loadAdminDash(String userName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Admin.fxml"));
         Object load = loader.load();
+        DashboardController controller = loader.getController();
+        controller.setUp(userName);
         Stage stage = new Stage();
         Scene scene = new Scene((Parent) load);
         stage.setScene(scene);

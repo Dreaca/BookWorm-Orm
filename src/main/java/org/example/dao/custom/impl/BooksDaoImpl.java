@@ -84,4 +84,14 @@ public class BooksDaoImpl implements BooksDao {
         transaction.commit();
         session.close();
     }
+
+    @Override
+    public Book search(String bookId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Book load = session.load(Book.class, bookId);
+        transaction.commit();
+        session.close();
+        return load;
+    }
 }

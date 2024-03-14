@@ -118,4 +118,18 @@ public class UserDaoImpl implements UserDao {
 
         return userList;
     }
+
+    @Override
+    public void update(User user) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User load = session.load(User.class, user.getUserId());
+        load.setUserName(user.getUserName());
+        load.setName(user.getName());
+        load.setEmail(user.getEmail());
+        load.setPassWord(user.getPassWord());
+        session.update(load);
+        transaction.commit();
+        session.close();
+    }
 }

@@ -8,6 +8,7 @@ import org.example.dao.custom.LogDao;
 import org.example.dao.custom.UserDao;
 import org.example.dto.BookDto;
 import org.example.dto.LogDto;
+import org.example.dto.UserDto;
 import org.example.entity.Book;
 import org.example.entity.Branch;
 import org.example.entity.Log;
@@ -74,5 +75,22 @@ public class AdminDashBoImpl implements AdminDashBo {
             );
         }
         return list;
+    }
+
+    @Override
+    public void updateUser(UserDto userDto) {
+        userDao.update(new User(
+                userDto.getUserId(),
+                userDto.getUserName(),
+                userDto.getName(),
+                userDto.getEmail(),
+                userDto.getPassword()
+        ));
+    }
+
+    @Override
+    public UserDto getUser(String userName) {
+        User search = userDao.search(userName);
+        return new UserDto(search.getUserId(),search.getName(),search.getUserName(),search.getPassWord(),search.getEmail());
     }
 }

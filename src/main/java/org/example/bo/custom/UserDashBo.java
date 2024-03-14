@@ -12,4 +12,8 @@ public interface UserDashBo extends SuperBo{
     UserDto getUser(String userName);
 
     List<LogDto> getAllLogsForThisUser(String text);
+
+    boolean addLog(String bookId, String text);
+
+    void updateUser(UserDto userDto);
 }

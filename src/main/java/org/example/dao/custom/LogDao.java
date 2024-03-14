@@ -9,4 +9,8 @@ public interface LogDao extends SuperDao {
     List<Log> getAll();
 
     List<Log> getAllFor(String text);
+
+    String getNextTid();
+
+    void save(Log log) throws Exception;
 }
