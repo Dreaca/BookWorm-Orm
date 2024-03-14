@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(to bottom, lightgray, grey);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginController">
    <children>
-      <TextField fx:id="txtUsername" layoutX="126.0" layoutY="123.0" prefHeight="25.0" prefWidth="348.0" promptText="User Name" />
-      <PasswordField fx:id="txtPassword" layoutX="126.0" layoutY="175.0" onAction="#loginOnAction" prefHeight="25.0" prefWidth="348.0" promptText="Password" />
-      <JFXButton buttonType="RAISED" layoutX="274.0" layoutY="236.0" onAction="#loginOnAction" style="-fx-background-color: lime;" text="Login" />
-      <JFXButton buttonType="RAISED" layoutX="271.0" layoutY="302.0" onAction="#signUpOnAction" style="-fx-background-color: deeppink;" text="Sign Up" />
-      <JFXToggleButton fx:id="toggleButton" contentDisplay="GRAPHIC_ONLY" layoutX="474.0" layoutY="160.0" prefHeight="58.0" prefWidth="76.0" text="Show Password" onAction="#togglePasswordVisibility"/>
+      <TextField fx:id="txtUsername" layoutX="126.0" layoutY="187.0" prefHeight="25.0" prefWidth="348.0" promptText="User Name" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: blue;" />
+      <PasswordField fx:id="txtPassword" layoutX="126.0" layoutY="227.0" onAction="#loginOnAction" prefHeight="25.0" prefWidth="348.0" promptText="Password" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: blue;" />
+      <JFXButton buttonType="RAISED" layoutX="277.0" layoutY="270.0" onAction="#loginOnAction" style="-fx-border-color: lime; -fx-background-radius: 20; -fx-border-radius: 20;" text="Login" />
+      <JFXButton buttonType="RAISED" layoutX="270.0" layoutY="334.0" onAction="#signUpOnAction" style="-fx-border-color: deeppink; -fx-background-radius: 20; -fx-border-radius: 20;" text="Sign Up" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/OIP-removebg-preview.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="290.0" layoutY="307.0" text="-or-" />
    </children>
 </AnchorPane>

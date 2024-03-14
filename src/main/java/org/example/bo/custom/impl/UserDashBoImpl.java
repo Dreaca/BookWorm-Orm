@@ -72,7 +72,7 @@ public class UserDashBoImpl implements UserDashBo {
         Book search = dao.search(bookId);
         User searched = user.search(text);
         LocalDate currentDate = LocalDate.now();
-        LocalDate expirationDate = currentDate.plusDays(7); // Adding 7 days to the current date
+        LocalDate expirationDate = currentDate.plusDays(7);
 
         Log newLog = new Log(Tid, search, searched,
                 currentDate,

@@ -5,21 +5,39 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="root" prefHeight="303.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AddnewBookController">
+<AnchorPane fx:id="root" prefHeight="303.0" prefWidth="313.0" style="-fx-background-color: lightgray; -fx-border-color: cyan;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AddnewBookController">
    <children>
-      <Label fx:id="txtBranchId" layoutX="9.0" layoutY="14.0" text="Branch ID" />
-      <Label fx:id="txtBranchName" layoutX="230.0" layoutY="14.0" text="Branch Name" />
-      <TextField fx:id="txtBookTitle" layoutX="101.0" layoutY="79.0" prefHeight="25.0" prefWidth="200.0" promptText="Book Title" />
-      <TextField fx:id="txtAuthor" layoutX="101.0" layoutY="121.0" prefHeight="25.0" prefWidth="200.0" promptText="Author" />
-      <TextField fx:id="txtGenre" layoutX="101.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" promptText="Genre" />
+      <Label fx:id="txtBranchId" layoutX="19.0" layoutY="34.0" text="Branch ID">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font></Label>
+      <Label fx:id="txtBranchName" layoutX="227.0" layoutY="38.0" text="Branch Name">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtBookTitle" layoutX="101.0" layoutY="79.0" prefHeight="25.0" prefWidth="200.0" promptText="Book Title" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+      <TextField fx:id="txtAuthor" layoutX="101.0" layoutY="121.0" prefHeight="25.0" prefWidth="200.0" promptText="Author" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+      <TextField fx:id="txtGenre" layoutX="101.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" promptText="Genre" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
       <CheckBox fx:id="isAvailable" layoutX="101.0" layoutY="214.0" mnemonicParsing="false" text="Available" />
-      <Label layoutX="17.0" layoutY="81.0" text="Book Title    :" />
-      <Label layoutX="18.0" layoutY="125.0" text="Author         :" />
-      <Label layoutX="19.0" layoutY="169.0" text="Genre          :" />
-      <Label layoutX="19.0" layoutY="214.0" text="Availability  :" />
-      <JFXButton buttonType="RAISED" layoutX="251.0" layoutY="251.0" onAction="#saveBookOnAction" style="-fx-background-color: lime;" text="Save" />
-      <JFXButton buttonType="RAISED" layoutX="181.0" layoutY="251.0" onAction="#cancelOnAction" style="-fx-background-color: red;" text="Cancel" />
+      <Label layoutX="17.0" layoutY="81.0" text="Book Title    :">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font></Label>
+      <Label layoutX="18.0" layoutY="125.0" text="Author         :">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font></Label>
+      <Label layoutX="19.0" layoutY="169.0" text="Genre          :">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font></Label>
+      <Label layoutX="19.0" layoutY="214.0" text="Availability  :">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font></Label>
+      <JFXButton buttonType="RAISED" layoutX="251.0" layoutY="251.0" onAction="#saveBookOnAction" style="-fx-border-color: lime;" text="Save" />
+      <JFXButton buttonType="RAISED" layoutX="181.0" layoutY="251.0" onAction="#cancelOnAction" style="-fx-border-color: red;" text="Cancel" />
    </children>
 </AnchorPane>

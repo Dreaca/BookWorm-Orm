@@ -32,7 +32,7 @@ public class LoginController {
         String userName = txtUsername.getText();
         String password = txtPassword.getText();
 
-        if (!RegexUtil.matchesRegex(userName, "^[a-zA-Z0-9_]{4,}$")) {
+       /* if (!RegexUtil.matchesRegex(userName, "^[a-zA-Z0-9_]{4,}$")) {
             new Alert(Alert.AlertType.ERROR, "Invalid username").show();
             return;
         }
@@ -41,7 +41,7 @@ public class LoginController {
             new Alert(Alert.AlertType.ERROR, "Invalid password").show();
             return;
         }
-
+*/
         if (bo.validate(userName,password)) {
             Stage window = (Stage) txtUsername.getScene().getWindow();
             window.close();

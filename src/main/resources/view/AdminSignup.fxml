@@ -7,16 +7,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminSignUpontroller">
+<AnchorPane prefHeight="400.0" prefWidth="674.0" style="-fx-background-color: linear-gradient(to bottom, lightgray, white);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdminSignUpontroller">
     <children>
-        <TextField fx:id="txtName" layoutX="73.0" layoutY="67.0" prefHeight="25.0" prefWidth="533.0" promptText="Name" />
-        <TextField fx:id="txtUserName" layoutX="72.0" layoutY="158.0" promptText="User Name" />
-        <CheckBox fx:id="chkTerms" layoutX="72.0" layoutY="293.0" mnemonicParsing="false" text="Agree to terms and conditions" />
-        <JFXButton buttonType="RAISED" layoutX="394.0" layoutY="347.0" onAction="#signUpOnAction" style="-fx-background-color: lime;" text="SignUp" />
-        <JFXButton buttonType="RAISED" layoutX="488.0" layoutY="348.0" onAction="#cancelOnAction" style="-fx-background-color: violet;" text="Cancel" />
-        <PasswordField fx:id="txtPassword" layoutX="72.0" layoutY="201.0" promptText="Create Password" />
-        <PasswordField fx:id="txtConfPassword" layoutX="72.0" layoutY="240.0" promptText="Confirm Password" />
-        <TextField fx:id="txtEmail" layoutX="73.0" layoutY="115.0" prefHeight="25.0" prefWidth="533.0" promptText="Email" />
-      <Label layoutX="286.0" layoutY="21.0" text="ADMIN SIGN UP" />
+        <TextField fx:id="txtName" layoutX="64.0" layoutY="67.0" prefHeight="25.0" prefWidth="533.0" promptText="Name" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+        <TextField fx:id="txtUserName" layoutX="63.0" layoutY="158.0" promptText="User Name" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+        <CheckBox fx:id="chkTerms" layoutX="63.0" layoutY="293.0" mnemonicParsing="false" text="Agree to terms and conditions" />
+        <JFXButton buttonType="RAISED" layoutX="385.0" layoutY="347.0" onAction="#signUpOnAction" style="-fx-border-color: lime;" text="SignUp" />
+        <JFXButton buttonType="RAISED" layoutX="479.0" layoutY="347.0" onAction="#cancelOnAction" style="-fx-border-color: violet;" text="Cancel" />
+        <PasswordField fx:id="txtPassword" layoutX="63.0" layoutY="201.0" promptText="Create Password" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+        <PasswordField fx:id="txtConfPassword" layoutX="63.0" layoutY="240.0" promptText="Confirm Password" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+        <TextField fx:id="txtEmail" layoutX="64.0" layoutY="115.0" prefHeight="25.0" prefWidth="533.0" promptText="Email" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: cyan;" />
+      <Label layoutX="277.0" layoutY="21.0" text="ADMIN SIGN UP" />
     </children>
 </AnchorPane>

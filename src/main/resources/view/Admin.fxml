@@ -7,42 +7,92 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="640.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.DashboardController">
+<AnchorPane fx:id="root" prefHeight="640.0" prefWidth="1201.0" style="-fx-background-color: linear-gradient(to top, lightgray,white);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.DashboardController">
    <children>
-      <AnchorPane fx:id="profane" layoutX="8.0" layoutY="6.0" prefHeight="623.0" prefWidth="320.0" style="-fx-border-color: blue;">
+      <AnchorPane fx:id="profane" layoutX="8.0" layoutY="6.0" prefHeight="623.0" prefWidth="320.0" style="-fx-border-color: cyan; -fx-background-color: linear-gradient(to right, white, lightgray);">
          <children>
-             <Label layoutX="115.0" layoutY="14.0" text="Welcome" />
-             <Label fx:id="txtUserName" layoutX="114.0" layoutY="35.0" text="Welcome" />
-             <Label layoutX="14.0" layoutY="214.0" text="User ID : " />
-             <Label layoutX="14.0" layoutY="249.0" text="User name :" />
-             <Label layoutX="13.0" layoutY="286.0" text="Name : " />
-             <Label layoutX="13.0" layoutY="368.0" text="Password : " />
-             <Label layoutX="13.0" layoutY="330.0" text="Email : " />
-             <Label fx:id="txtUID" layoutX="151.0" layoutY="214.0" text="Label" />
-             <Label fx:id="txtUName" layoutX="151.0" layoutY="248.0" text="Label" />
-             <Label fx:id="txtName" layoutX="151.0" layoutY="285.0" text="Label" wrapText="true" />
-             <Label fx:id="txtEmail" layoutX="151.0" layoutY="328.0" text="Label" />
+             <Label layoutX="115.0" layoutY="14.0" text="Welcome">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label fx:id="txtUserName" layoutX="114.0" layoutY="35.0" text="Welcome">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label layoutX="14.0" layoutY="214.0" text="User ID : ">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label layoutX="14.0" layoutY="249.0" text="User name :">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label layoutX="13.0" layoutY="286.0" text="Name : ">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label layoutX="13.0" layoutY="368.0" text="Password : ">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label layoutX="13.0" layoutY="330.0" text="Email : ">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label fx:id="txtUID" layoutX="151.0" layoutY="214.0" text="Label">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label fx:id="txtUName" layoutX="151.0" layoutY="248.0" text="Label">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label fx:id="txtName" layoutX="151.0" layoutY="285.0" text="Label" wrapText="true">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
+             <Label fx:id="txtEmail" layoutX="151.0" layoutY="328.0" text="Label">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="12.0" />
+               </font></Label>
              <Label fx:id="txtPassWord" layoutX="150.0" layoutY="366.0" text="Label" visible="false" />
              <TextField fx:id="changeUName" layoutX="103.0" layoutY="245.0" prefHeight="2.0" prefWidth="200.0" visible="false" />
              <TextField fx:id="changeName" layoutX="103.0" layoutY="285.0" prefHeight="2.0" prefWidth="200.0" visible="false" />
              <TextField fx:id="changeEmail" layoutX="103.0" layoutY="324.0" prefHeight="2.0" prefWidth="200.0" visible="false" />
              <TextField fx:id="changePass" layoutX="103.0" layoutY="363.0" prefHeight="2.0" prefWidth="200.0" visible="false" />
-             <JFXButton layoutX="230.0" layoutY="19.0" onAction="#editOnAction" text="Edit" />
+             <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="258.0" layoutY="9.0" onAction="#editOnAction" prefHeight="41.0" prefWidth="45.0" text="Edit">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/editing.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
              <JFXButton fx:id="editDone" layoutX="244.0" layoutY="405.0" onAction="#updateUser" text="Done" visible="false" />
              <JFXButton fx:id="btnProfCancel" layoutX="186.0" layoutY="405.0" onAction="#cancelUpdate" text="Cancel" visible="false" />
-             <JFXButton layoutX="226.0" layoutY="571.0" onAction="#logoutOnAction" text="Log Out" />
+             <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="258.0" layoutY="562.0" onAction="#logoutOnAction" prefHeight="49.0" prefWidth="39.0" text="Log Out">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
 
          </children>
       </AnchorPane>
-      <TabPane layoutX="337.0" layoutY="7.0" prefHeight="619.0" prefWidth="933.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="337.0" layoutY="7.0" prefHeight="619.0" prefWidth="852.0" style="-fx-background-color: lightgray; -fx-border-color: cyan;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Branches">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="587.0" prefWidth="819.0">
                      <children>
-                        <TableView fx:id="branchTable" layoutX="16.0" layoutY="45.0" prefHeight="520.0" prefWidth="769.0">
+                        <TableView fx:id="branchTable" layoutX="16.0" layoutY="45.0" prefHeight="520.0" prefWidth="769.0" style="-fx-border-color: cyan;">
                           <columns>
                             <TableColumn fx:id="branchesColBranchId" prefWidth="108.66668701171875" text="Branch_ID" />
                             <TableColumn fx:id="branchesColLocation" prefWidth="117.3333740234375" text="Location" />
@@ -52,27 +102,55 @@
                               <TableColumn fx:id="branchesColBooks" prefWidth="103.99995930989587" text="Books" />
                           </columns>
                         </TableView>
-                        <JFXButton layoutX="641.0" layoutY="14.0" onAction="#addNewBranchOnAction" prefHeight="25.0" prefWidth="151.0" text="New Branch" />
-                        <JFXButton layoutX="16.0" layoutY="14.0" onAction="#reloadOnAction" text="Reload" />
+                        <JFXButton layoutX="628.0" layoutY="3.0" onAction="#addNewBranchOnAction" prefHeight="25.0" prefWidth="151.0" text="New Branch">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
+                        <JFXButton contentDisplay="RIGHT" layoutX="18.0" layoutY="3.0" onAction="#reloadOnAction" text="Reload">
+                           <graphic>
+                              <ImageView fitHeight="29.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/reload.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab text="Users">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="587.0" prefWidth="813.0">
                      <children>
-                        <TableView fx:id="userTable" layoutX="12.0" layoutY="66.0" prefHeight="489.0" prefWidth="897.0">
+                        <TableView fx:id="userTable" layoutX="12.0" layoutY="66.0" prefHeight="489.0" prefWidth="805.0">
                           <columns>
                             <TableColumn fx:id="UserColUID" prefWidth="75.0" text="User_ID" />
                             <TableColumn fx:id="UserColUname" prefWidth="155.333251953125" text="User Name" />
-                              <TableColumn fx:id="userColName" prefWidth="220.6666259765625" text="Name" />
-                              <TableColumn fx:id="userColEmail" prefWidth="315.111083984375" text="Email" />
-                              <TableColumn fx:id="userColMod" prefWidth="128.2222900390625" text="Modify" />
+                              <TableColumn fx:id="userColName" prefWidth="152.66661071777344" text="Name" />
+                              <TableColumn fx:id="userColEmail" prefWidth="308.8889465332031" text="Email" />
+                              <TableColumn fx:id="userColMod" prefWidth="111.7777099609375" text="Modify" />
                           </columns>
                         </TableView>
-                        <JFXButton layoutX="31.0" layoutY="21.0" onAction="#addNewAdminOnAction" text="Add new Admin" />
-                        <JFXButton layoutX="802.0" layoutY="21.0" onAction="#overDueUsersOnAction" text="Overdue Users" />
+                        <JFXButton layoutX="31.0" layoutY="21.0" onAction="#addNewAdminOnAction" text="Add new Admin">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/add.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
+                        <JFXButton layoutX="666.0" layoutY="23.0" onAction="#overDueUsersOnAction" text="Overdue Users">
+                           <graphic>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/overdue.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
                      </children>
                   </AnchorPane>
             </content>
@@ -81,7 +159,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="logTable" layoutX="25.0" layoutY="70.0" prefHeight="500.0" prefWidth="875.0">
+                        <TableView fx:id="logTable" layoutX="14.0" layoutY="70.0" prefHeight="500.0" prefWidth="819.0">
                           <columns>
                             <TableColumn fx:id="LogTID" prefWidth="114.44442749023438" text="TransactionID" />
                             <TableColumn fx:id="logColBookName" prefWidth="109.3333740234375" text="Book_Name" />
@@ -89,10 +167,17 @@
                               <TableColumn fx:id="logBorrowDate" prefWidth="132.22222900390625" text="Borrowed_Date" />
                               <TableColumn fx:id="logColRetDate" prefWidth="144.666748046875" text="Return_Date" />
                               <TableColumn fx:id="logColStatus" prefWidth="129.99993896484375" text="Status" />
-                              <TableColumn fx:id="logColOptions" prefWidth="126.66670735677087" text="Options" />
+                              <TableColumn fx:id="logColOptions" prefWidth="68.6666259765625" text="Options" />
                           </columns>
                         </TableView>
-                        <JFXButton layoutX="798.0" layoutY="22.0" onAction="#checkOverdueOnAction" text="Check Overdue" />
+                        <JFXButton layoutX="683.0" layoutY="9.0" onAction="#checkOverdueOnAction" text="Check Overdue">
+                           <graphic>
+                              <ImageView fitHeight="46.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../assets/overdue.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></JFXButton>
                      </children>
                   </AnchorPane>
               </content>
