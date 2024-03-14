@@ -346,6 +346,32 @@ public class DashboardController {
     }
 
     public void updateUser(ActionEvent actionEvent) {
+        String changeUNameText = changeUName.getText();
+        String changeNameText = changeName.getText();
+        String changeEmailText = changeEmail.getText();
+        String changePassText = changePass.getText();
+
+        if (!changeUNameText.matches("^[a-zA-Z0-9_]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid username").show();
+            return;
+        }
+
+        if (!changeNameText.matches("^[a-zA-Z\\s.'-]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+            return;
+        }
+
+        if (!changeEmailText.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid email address").show();
+            return;
+        }
+
+        if (!changePassText.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid password").show();
+            return;
+        }
+
+
         bo.updateUser(new UserDto(txtUID.getText(),
                 changeUName.getText(),
                 changeName.getText(),
@@ -458,19 +484,19 @@ public class DashboardController {
             userTable.setItems(oblist);
             userTable.refresh();
         }
-//        for (int i = 0; i < oblist.size(); i++) {
-//            int finalI = i;
-//            int finalI2 = i;
-//            int finalI3 = i;
-//            int finalI4 = i;
-//            oblist.get(i).getModButton().setOnAction(Event -> {
-//                oblist.get(finalI).getModButton().setOnAction(actionEvent1 -> {
-//                    String userId = oblist.get(finalI2).getUserId();
-//                    bo.deleteUser(userId);
-//                    loadUsers();
-//                });
-//
-//            });
-//        }
+        for (int i = 0; i < oblist.size(); i++) {
+            int finalI = i;
+            int finalI2 = i;
+            int finalI3 = i;
+            int finalI4 = i;
+            oblist.get(i).getModButton().setOnAction(Event -> {
+                oblist.get(finalI).getModButton().setOnAction(actionEvent1 -> {
+                    String userId = oblist.get(finalI2).getUserId();
+                    bo.deleteUser(userId);
+                    loadUsers();
+                });
+
+            });
+        }
     }
 }

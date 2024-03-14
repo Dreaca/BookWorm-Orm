@@ -2,6 +2,7 @@ package org.example.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -50,6 +51,22 @@ public class AddnewBookController {
         String authorText = txtAuthor.getText();
         String genreText = txtGenre.getText();
         boolean availability = isAvailable.isSelected();
+
+        if (!authorText.matches("^[a-zA-Z\\s.'-]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid author").show();
+            return;
+        }
+
+        if (!bookTitle.matches("^[a-zA-Z0-9\\s.'-]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid book title").show();
+            return;
+        }
+
+        if (!genreText.matches("^[a-zA-Z\\s,.'-]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid genre").show();
+            return;
+        }
+
         bo.saveThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,branchName));
 
     }

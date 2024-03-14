@@ -5,10 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -196,6 +193,33 @@ public class UserDashController {
     }
 
     public void updateUser(ActionEvent actionEvent) {
+
+        String changeUNameText = changeUName.getText();
+        String changeNameText = changeName.getText();
+        String changeEmailText = changeEmail.getText();
+        String changePassText = changePass.getText();
+
+        if (!changeUNameText.matches("^[a-zA-Z0-9_]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid username").show();
+            return;
+        }
+
+        if (!changeNameText.matches("^[a-zA-Z\\s.'-]{3,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+            return;
+        }
+
+        if (!changeEmailText.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid email address").show();
+            return;
+        }
+
+        if (!changePassText.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid password").show();
+            return;
+        }
+
+
         bo.updateUser(new UserDto(txtUID.getText(),
                 changeUName.getText(),
                 changeName.getText(),

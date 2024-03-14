@@ -61,7 +61,7 @@ public class UserDaoImpl implements UserDao {
             if (!String.valueOf(singleResult).startsWith("ADMIN")) {
                 return false;
             } else return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
     }
@@ -108,9 +108,8 @@ public class UserDaoImpl implements UserDao {
         List<User> userList;
         try {
             userList = session.createQuery("FROM User", User.class).list();
-        }
-        catch (Exception exception){
-            new Alert(Alert.AlertType.WARNING,"NO data in Branches").show();
+        } catch (Exception exception) {
+            new Alert(Alert.AlertType.WARNING, "NO data in Branches").show();
             userList = new ArrayList<>();
         }
 

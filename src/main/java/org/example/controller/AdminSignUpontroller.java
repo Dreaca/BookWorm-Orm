@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.SignUpBo;
 import org.example.dto.UserDto;
+import org.example.util.RegexUtil;
 
 public class AdminSignUpontroller {
 
@@ -49,10 +50,26 @@ public class AdminSignUpontroller {
             String userName = txtUserName.getText();
             String passwordText = txtPassword.getText();
             String email = txtEmail.getText();
+
+            if (!RegexUtil.matchesRegex(email, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                new Alert(Alert.AlertType.ERROR, "Invalid email address").show();
+                return;
+            }
+
+            if (!RegexUtil.matchesRegex(userName, "^[a-zA-Z0-9_]{4,}$")) {
+                new Alert(Alert.AlertType.ERROR, "Invalid username").show();
+                return;
+            }
+
+            if (!RegexUtil.matchesRegex(passwordText, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+                new Alert(Alert.AlertType.ERROR, "Invalid password").show();
+                return;
+            }
             if (!txtConfPassword.getText().equals(passwordText)){
                 txtConfPassword.setStyle("-fx-border-color: red");
                 return;
             }
+
             boolean b = bo.saveAdmin(new UserDto(name, userName, passwordText, email));
             if (b){
                 new Alert(Alert.AlertType.CONFIRMATION,"User Saved Successfully").show();

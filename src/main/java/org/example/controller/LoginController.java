@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,21 +13,35 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.LoginBo;
+import org.example.util.RegexUtil;
 
 import java.io.IOException;
 
 public class LoginController {
 
+    public JFXToggleButton toggleButton;
     @FXML
     private PasswordField txtPassword;
 
     @FXML
     private TextField txtUsername;
+    private boolean isPasswordVisible = false;
 
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {
         String userName = txtUsername.getText();
         String password = txtPassword.getText();
+
+        if (!RegexUtil.matchesRegex(userName, "^[a-zA-Z0-9_]{4,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid username").show();
+            return;
+        }
+
+        if (!RegexUtil.matchesRegex(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid password").show();
+            return;
+        }
+
         if (bo.validate(userName,password)) {
             Stage window = (Stage) txtUsername.getScene().getWindow();
             window.close();
@@ -38,6 +53,7 @@ public class LoginController {
             }
         }
     }
+
 
     private void loadUserDash(String userName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/userDash.fxml"));
@@ -93,5 +109,14 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
-
+    @FXML
+    private void togglePasswordVisibility() {
+        /*isPasswordVisible = !isPasswordVisible;
+        if (isPasswordVisible) {
+            txtPassword.setText(txtPassword.getText());
+        } else {
+            String hiddenText = "*".repeat(txtPassword.getText().length());
+            txtPassword.setText(hiddenText);
+        }*/ //DOES NOT WORK
+    }
 }
