@@ -28,8 +28,8 @@
                               <TableColumn fx:id="bookOptions" prefWidth="101.111083984375" text="Option" />
                           </columns>
                         </TableView>
-                        <TextField layoutX="8.0" layoutY="14.0" prefHeight="25.0" prefWidth="735.0" promptText="Search for a book ....." />
-                        <JFXButton layoutX="781.0" layoutY="14.0" prefHeight="25.0" prefWidth="123.0" text="Search" />
+                        <TextField layoutX="8.0" layoutY="14.0" onAction="#searchOnAction" prefHeight="25.0" prefWidth="735.0" promptText="Search for a book ....." />
+                        <JFXButton layoutX="781.0" layoutY="14.0" onAction="#searchOnAction" prefHeight="25.0" prefWidth="123.0" text="Search" />
                      </children>
                   </AnchorPane>
             </content>
@@ -38,10 +38,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="22.0" layoutY="15.0" prefHeight="457.0" prefWidth="885.0">
+                        <TableView layoutX="38.0" layoutY="35.0" prefHeight="457.0" prefWidth="617.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn prefWidth="97.55551147460938" text="TransactionId" />
+                            <TableColumn prefWidth="96.22219848632812" text="BookId" />
+                              <TableColumn prefWidth="142.4444580078125" text="BorrowedDate" />
+                              <TableColumn prefWidth="153.5555419921875" text="ReturnDate" />
+                              <TableColumn prefWidth="125.111083984375" text="DueStatus" />
                           </columns>
                         </TableView>
                      </children>

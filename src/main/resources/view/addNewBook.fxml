@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:id="root" prefHeight="303.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AddnewBookController">
+   <children>
+      <Label fx:id="txtBranchId" layoutX="9.0" layoutY="14.0" text="Branch ID" />
+      <Label fx:id="txtBranchName" layoutX="230.0" layoutY="14.0" text="Branch Name" />
+      <TextField fx:id="txtBookTitle" layoutX="101.0" layoutY="79.0" prefHeight="25.0" prefWidth="200.0" promptText="Book Title" />
+      <TextField fx:id="txtAuthor" layoutX="101.0" layoutY="121.0" prefHeight="25.0" prefWidth="200.0" promptText="Author" />
+      <TextField fx:id="txtGenre" layoutX="101.0" layoutY="165.0" prefHeight="25.0" prefWidth="200.0" promptText="Genre" />
+      <CheckBox fx:id="isAvailable" layoutX="101.0" layoutY="214.0" mnemonicParsing="false" text="Available" />
+      <Label layoutX="17.0" layoutY="81.0" text="Book Title    :" />
+      <Label layoutX="18.0" layoutY="125.0" text="Author         :" />
+      <Label layoutX="19.0" layoutY="169.0" text="Genre          :" />
+      <Label layoutX="19.0" layoutY="214.0" text="Availability  :" />
+      <JFXButton buttonType="RAISED" layoutX="251.0" layoutY="251.0" onAction="#saveBookOnAction" style="-fx-background-color: lime;" text="Save" />
+      <JFXButton buttonType="RAISED" layoutX="181.0" layoutY="251.0" onAction="#cancelOnAction" style="-fx-background-color: red;" text="Cancel" />
+   </children>
+</AnchorPane>

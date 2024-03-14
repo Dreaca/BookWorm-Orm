@@ -65,7 +65,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="25.0" layoutY="70.0" prefHeight="500.0" prefWidth="875.0">
+                        <TableView fx:id="logTable" layoutX="25.0" layoutY="70.0" prefHeight="500.0" prefWidth="875.0">
                           <columns>
                             <TableColumn fx:id="LogTID" prefWidth="114.44442749023438" text="TransactionID" />
                             <TableColumn fx:id="logColBookName" prefWidth="109.3333740234375" text="Book_Name" />

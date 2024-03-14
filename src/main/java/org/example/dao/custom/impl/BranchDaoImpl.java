@@ -72,4 +72,16 @@ public class BranchDaoImpl implements BranchDao {
         session.close();
     }
 
+    @Override
+    public Branch getBranch(String branchName) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from Branch where location = ?1 order by branchId desc limit 1");
+        query.setParameter(1,branchName);
+        Branch branch = (Branch) query.getSingleResult();
+        transaction.commit();
+        session.close();
+        return branch;
+    }
+
 }

@@ -12,9 +12,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.AdminDashBo;
+import org.example.dto.LogDto;
 import org.example.entity.Branch;
 import org.example.entity.User;
 import org.example.model.BranchTM;
+import org.example.model.LogTm;
 import org.example.model.UserTm;
 
 import java.io.IOException;
@@ -49,6 +51,7 @@ public class DashboardController {
     public TableColumn logColRetDate;
     public TableColumn logColStatus;
     public TableColumn logColOptions;
+    public TableView logTable;
 
     AdminDashBo bo = (AdminDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.ADMIN);
 
@@ -66,7 +69,29 @@ public class DashboardController {
         setCellValueFactory();
         loadBranches();
         loadUsers();
+        loadLogs();
     }
+
+    private void loadLogs() {
+        ObservableList<LogTm> oblist = FXCollections.observableArrayList();
+        List<LogDto> list = bo.getAllLogs();
+        for (LogDto d : list){
+            oblist.add(
+                    new LogTm(
+                            d.getTid(),
+                            d.getBookName(),
+                            d.getUserName(),
+                            d.getBorrwedDate(),
+                            d.getReturnedDate(),
+                            d.isStatus(),
+                            getNewDetButton()
+                    )
+            );
+            logTable.setItems(oblist);
+            logTable.refresh();
+        }
+    }
+
     public void setCellValueFactory(){
         //branches
         branchesColBranchId.setCellValueFactory(new PropertyValueFactory<>("branchId"));
@@ -84,6 +109,14 @@ public class DashboardController {
         UserColUID.setCellValueFactory(new PropertyValueFactory<>("userId"));
         UserColUname.setCellValueFactory(new PropertyValueFactory<>("userName"));
 
+        //logs
+        LogTID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
+        logColBookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
+        logColUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
+        logBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
+        logColRetDate.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
+        logColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        logColOptions.setCellValueFactory(new PropertyValueFactory<>("mod"));
     }
 
     public void loadBranches(){
@@ -166,11 +199,11 @@ public class DashboardController {
     private void loadBranchBooks(String branchId, String location) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/books.fxml"));
         Object load = loader.load();
+        BookFormController controller = loader.getController();
+        controller.setBranchNameId(branchId,location);
         Stage stage = new Stage();
         Scene scene = new Scene((Parent) load);
         stage.setScene(scene);
-        BookFormController controller = loader.getController();
-        controller.setBranchNameId(branchId,location);
         stage.show();
     }
 

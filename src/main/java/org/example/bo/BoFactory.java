@@ -21,6 +21,8 @@ public class BoFactory {
                 return new AdminDashBoImpl();
             case USERDASH:
                 return new UserDashBoImpl();
+            case BOOKS:
+                return new SaveBooksBoImpl();
             default:
                 return null;
         }
@@ -32,6 +34,6 @@ public class BoFactory {
     }
 
     public static enum BoTypes {
-        SIGN_UP,LOGIN,SAVE_BRANCH,ADMIN,USERDASH
+        SIGN_UP,LOGIN,SAVE_BRANCH,ADMIN,USERDASH,BOOKS
     }
 }

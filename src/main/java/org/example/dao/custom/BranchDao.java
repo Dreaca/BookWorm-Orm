@@ -13,4 +13,6 @@ public interface BranchDao extends SuperDao {
     List<Branch> getAll();
 
     void deleteBranch(String branchId);
+
+    Branch getBranch(String branchName);
 }
