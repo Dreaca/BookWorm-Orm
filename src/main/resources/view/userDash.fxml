@@ -55,7 +55,7 @@
                               <TableColumn fx:id="bookOptions" prefWidth="101.111083984375" text="Option" />
                           </columns>
                         </TableView>
-                        <TextField layoutX="8.0" layoutY="14.0" onAction="#searchOnAction" prefHeight="25.0" prefWidth="735.0" promptText="Search for a book ....." />
+                        <TextField fx:id="searchTxt" layoutX="8.0" layoutY="14.0" onAction="#searchOnAction" prefHeight="25.0" prefWidth="735.0" promptText="Search for a book ....." />
                         <JFXButton layoutX="781.0" layoutY="14.0" onAction="#searchOnAction" prefHeight="25.0" prefWidth="123.0" text="Search" />
                      </children>
                   </AnchorPane>

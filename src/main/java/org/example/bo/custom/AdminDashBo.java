@@ -22,4 +22,12 @@ public interface AdminDashBo extends SuperBo{
     void updateUser(UserDto userDto);
 
     UserDto getUser(String userName);
+
+    void updateTransaction(String tid);
+
+    void deleteUser(String userId);
+
+    List<LogDto> getOverDueList();
+
+    List<UserDto> getOverDueUsers();
 }

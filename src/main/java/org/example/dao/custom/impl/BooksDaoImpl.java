@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.BooksDao;
 import org.example.entity.Book;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -94,4 +95,51 @@ public class BooksDaoImpl implements BooksDao {
         session.close();
         return load;
     }
+
+    @Override
+    public Book searchByName(String search) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("from Book where title = ?1");
+        query.setParameter(1, search);
+        Book singleResult = (Book) query.getSingleResult();
+        transaction.commit();
+        session.close();
+        return singleResult;
+    }
+
+    @Override
+    public void updateAvailabilityFalse(Book search) {
+        Transaction transaction = null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+            Book load = session.load(Book.class, search.getBookId());
+            load.setAvailability(false);
+            session.update(load);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateAvailability(Book search) {
+        Transaction transaction = null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+            Book load = session.load(Book.class, search.getBookId());
+            load.setAvailability(true);
+            session.update(load);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package org.example.bo.custom.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.bo.custom.AdminDashBo;
 import org.example.dao.DaoFactory;
 import org.example.dao.custom.BooksDao;
@@ -92,5 +93,53 @@ public class AdminDashBoImpl implements AdminDashBo {
     public UserDto getUser(String userName) {
         User search = userDao.search(userName);
         return new UserDto(search.getUserId(),search.getName(),search.getUserName(),search.getPassWord(),search.getEmail());
+    }
+    @Transactional
+    @Override
+    public void updateTransaction(String tid) {
+        Book update = lgdao.update(tid);
+        booksDao.updateAvailability(update);
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        userDao.delete(userId);
+    }
+
+    @Override
+    public List<LogDto> getOverDueList() {
+        List<Log> all = lgdao.getOverDueList();
+        List<LogDto> list = new ArrayList<>();
+        for(Log b : all){
+            list.add(
+                    new LogDto(
+                            b.getTransactionId(),
+                            b.getBook().getTitle(),
+                            b.getUser().getUserName(),
+                            b.getBorrowDate(),
+                            b.getReturnDate(),
+                            b.isStatus()
+                    )
+            );
+        }
+        return list;
+    }
+
+    @Override
+    public List<UserDto> getOverDueUsers() {
+        List<User> overdueUsers = userDao.getOverdueUsers();
+        List<UserDto> list = new ArrayList<>();
+        for(User u : overdueUsers){
+            list.add(
+                    new UserDto(
+                        u.getUserId(),
+                        u.getUserName(),
+                        u.getName(),
+                            u.getEmail(),
+                            u.getPassWord()
+                    )
+            );
+        }
+        return list;
     }
 }

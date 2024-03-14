@@ -3,8 +3,9 @@ package org.example.dao.custom.impl;
 import javafx.scene.control.Alert;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.LogDao;
-import org.example.entity.Branch;
+import org.example.entity.Book;
 import org.example.entity.Log;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -45,7 +46,7 @@ public class LogDaoImpl implements LogDao {
            logList = query.list();
         }
         catch (Exception exception){
-            new Alert(Alert.AlertType.WARNING,"NO data in Branches").show();
+            new Alert(Alert.AlertType.WARNING,"NO data in Logs").showAndWait();
             logList = new ArrayList<>();
         }
 
@@ -86,4 +87,44 @@ public class LogDaoImpl implements LogDao {
         transaction.commit();
         session.close();
     }
+
+    @Override
+    public Book update(String tid) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Log load = session.load(Log.class, tid);
+        load.setStatus(true);
+        Book book = load.getBook();
+        transaction.commit();
+        session.close();
+        return book;
+    }
+
+    @Override
+    public Log search(String tid) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Log load = session.load(Log.class, tid);
+        transaction.commit();
+        session.close();
+        return load;
+    }
+
+    public List<Log> getOverDueList() {
+        List<Log> logList;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            String hql = "FROM Log WHERE returnDate < CURRENT_DATE";
+            Query<Log> query = session.createQuery(hql, Log.class);
+            logList = query.list();
+
+            transaction.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            logList = new ArrayList<>();
+        }
+        return logList;
+    }
+
 }

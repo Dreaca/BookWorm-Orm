@@ -15,5 +15,4 @@ public class UserTm {
     private String name;
     private String email;
     private JFXButton modButton;
-    private JFXButton detButton;
 }

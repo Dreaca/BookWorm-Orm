@@ -16,4 +16,8 @@ public interface UserDashBo extends SuperBo{
     boolean addLog(String bookId, String text);
 
     void updateUser(UserDto userDto);
+
+    BookDto searchBookByName(String search);
+
+    BookDto searchBook(String bookId);
 }

@@ -43,6 +43,7 @@ public class UserDashController {
     public JFXButton editDone;
     public JFXButton btnProfCancel;
     public AnchorPane root;
+    public TextField searchTxt;
     @FXML
     private TableColumn<?, ?> bookAuthor;
 
@@ -70,7 +71,38 @@ public class UserDashController {
     private UserDashBo bo = (UserDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.USERDASH);
     @FXML
     void searchOnAction(ActionEvent event) {
+        String search = searchTxt.getText();
+        BookDto dto = bo.searchBookByName(search);
+        ObservableList<BookTm> oblist = FXCollections.observableArrayList();
+            oblist.add(
+                    new BookTm(
+                            dto.getBookId(),
+                            dto.getTitle(),
+                            dto.getAuthor(),
+                            dto.getGenre(),
+                            dto.isAvailability(),
+                            dto.getBranchName(),
+                            loadJFXButton()
+                    ));
 
+        for (int i = 0; i < oblist.size(); i++) {
+            JFXButton bt =   oblist.get(i).getButton();
+            if (oblist.get(i).getAvailability().startsWith("borrowed")){
+                bt.setText("borrowed");
+                bt.setDisable(true);
+            }
+            int finalI = i;
+            bt.setOnAction(actionEvent -> {
+                boolean b = bo.addLog(oblist.get(finalI).getBookId(), txtUName.getText());
+                if (b){ bt.setStyle("-fx-background-color: green");
+                    bt.setText("borrowed");
+                    bt.setDisable(true);
+                }
+                loadLogs();
+            });
+        }
+        booktbl.setItems(oblist);
+        booktbl.refresh();
     }
 
     public void initialize(){
@@ -97,6 +129,11 @@ public class UserDashController {
         for (int i = 0; i < oblist.size(); i++) {
             JFXButton bt =   oblist.get(i).getButton();
             int finalI = i;
+            int finalI1 = i;
+            if (oblist.get(finalI1).getAvailability().startsWith("borrowed")){
+                bt.setText("borrowed");
+                bt.setDisable(true);
+            }
             bt.setOnAction(actionEvent -> {
                 boolean b = bo.addLog(oblist.get(finalI).getBookId(), txtUName.getText());
                 if (b){ bt.setStyle("-fx-background-color: green");

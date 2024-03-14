@@ -1,5 +1,6 @@
 package org.example.bo.custom.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.bo.custom.UserDashBo;
 import org.example.dao.DaoFactory;
 import org.example.dao.custom.BooksDao;
@@ -13,7 +14,6 @@ import org.example.entity.Log;
 import org.example.entity.User;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +65,7 @@ public class UserDashBoImpl implements UserDashBo {
         return loglist;
     }
 
+    @Transactional
     @Override
     public boolean addLog(String bookId, String text) {
         String Tid = log.getNextTid();
@@ -78,7 +79,9 @@ public class UserDashBoImpl implements UserDashBo {
                 expirationDate,
                 false);
         try {
-        log.save(newLog);}
+        log.save(newLog);
+        dao.updateAvailabilityFalse(search);
+        }
         catch (Exception e){
             return false;
         }
@@ -94,5 +97,26 @@ public class UserDashBoImpl implements UserDashBo {
            userDto.getEmail(),
            userDto.getPassword()
         ));
+    }
+
+    @Override
+    public BookDto searchBookByName(String search) {
+       Book book =  dao.searchByName(search);
+       return new BookDto(
+               book.getBookId(),
+               book.getTitle(),
+               book.getAuthor(),
+               book.getGenre(),
+               book.isAvailability(),
+               book.getBranch().getLocation()
+               );
+    }
+
+    @Override
+    public BookDto searchBook(String bookId) {
+        Book b = dao.search(bookId);
+        System.out.println(b.getTitle());
+        return new BookDto(
+        );
     }
 }

@@ -15,4 +15,10 @@ public interface BooksDao extends SuperDao {
     void save(Book book);
 
     Book search(String bookId);
+
+    Book searchByName(String search);
+
+    void updateAvailabilityFalse(Book search);
+
+    void updateAvailability(Book search1);
 }

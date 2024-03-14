@@ -3,13 +3,14 @@ package org.example.dao.custom.impl;
 import javafx.scene.control.Alert;
 import org.example.config.FactoryConfiguration;
 import org.example.dao.custom.UserDao;
-import org.example.entity.Branch;
 import org.example.entity.User;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.lang.String.format;
@@ -132,4 +133,31 @@ public class UserDaoImpl implements UserDao {
         transaction.commit();
         session.close();
     }
+
+    @Override
+    public void delete(String userId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User load = session.load(User.class, userId);
+        session.delete(load);
+        transaction.commit();
+        session.close();
+    }
+
+    public List<User> getOverdueUsers() {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Transaction transaction = session.beginTransaction();
+
+            String hql = "SELECT DISTINCT u FROM User u JOIN u.logs l WHERE l.returnDate < CURRENT_DATE";
+            Query<User> query = session.createQuery(hql, User.class);
+            List<User> userList = query.list();
+
+            transaction.commit();
+            return userList;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
 }

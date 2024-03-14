@@ -19,4 +19,8 @@ public interface UserDao extends SuperDao {
     List<User> getAll();
 
     void update(User user);
+
+    void delete(String userId);
+
+    List<User> getOverdueUsers();
 }

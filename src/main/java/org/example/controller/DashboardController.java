@@ -54,6 +54,8 @@ public class DashboardController {
     public TableColumn logColStatus;
     public TableColumn logColOptions;
     public TableView logTable;
+
+    //PROFILE PANE
     public JFXButton btnProfCancel;
     public JFXButton editDone;
     public TextField changePass;
@@ -104,7 +106,43 @@ public class DashboardController {
             );
             logTable.setItems(oblist);
             logTable.refresh();
+            for (int i = 0; i < oblist.size(); i++) {
+                int finalI = i;
+                int finalI2 = i;
+                int finalI3 = i;
+                int finalI4 = i;
+                oblist.get(i).getMod().setOnAction(actionEvent -> {
+                    try {
+                        JFXButton bt = oblist.get(finalI).getMod();
+                        double x = bt.localToScreen(bt.getBoundsInLocal()).getMinX();
+                        double y = bt.localToScreen(bt.getBoundsInLocal()).getMinY();
+
+                        ContextMenu con =  loadlogPopup(oblist.get(finalI).getMod());
+
+                        con.getItems().get(0).setOnAction(actionEvent1 -> {
+                            String tid = oblist.get(finalI2).getTid();
+                            bo.updateTransaction(tid);
+                            loadLogs();
+                        });
+                        con.getItems().get(1).setOnAction(actionEvent1 -> {
+
+                        });
+                        con.show(bt, x, y);
+
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
         }
+    }
+    public ContextMenu loadlogPopup(JFXButton modifyButton) throws IOException {
+        ContextMenu con = new ContextMenu();
+        MenuItem button1 = new MenuItem("Returned Book");
+        MenuItem button2 = new MenuItem("Delete");
+        con.getItems().addAll(button1, button2);
+
+        return con;
     }
 
     public void setCellValueFactory(){
@@ -117,7 +155,7 @@ public class DashboardController {
         branchesColBooks.setCellValueFactory(new PropertyValueFactory<>("booksButton"));
 
         //users
-        userColDet.setCellValueFactory(new PropertyValueFactory<>("detButton"));
+
         userColName.setCellValueFactory(new PropertyValueFactory<>("name"));
         userColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         userColMod.setCellValueFactory(new PropertyValueFactory<>("modButton"));
@@ -193,12 +231,10 @@ public class DashboardController {
                         Optional<ButtonType> result = alert.showAndWait();
                         result.ifPresent(response -> {
                             if (response == buttonTypeYes) {
-                                // Call the method to delete the branch
                                 bo.deleteBranch(oblist.get(finalI4).getBranchId());
                                 loadBranches();
                             } else {
-                                // User chose not to delete the branch, do nothing or provide feedback
-                                System.out.println("User chose not to delete the branch.");
+                                alert.close();
                             }
                         });
                     });
@@ -251,17 +287,31 @@ public class DashboardController {
                            d.getUserName(),
                            d.getName(),
                            d.getEmail(),
-                           getNewModifyButton(),
-                           getNewDetButton()
+                           getNewModifyButton()
                    )
            );
+
            userTable.setItems(oblist);
            userTable.refresh();
+       }
+       for (int i = 0; i < oblist.size(); i++) {
+           int finalI = i;
+           int finalI2 = i;
+           int finalI3 = i;
+           int finalI4 = i;
+           oblist.get(i).getModButton().setOnAction(actionEvent -> {
+               oblist.get(finalI).getModButton().setOnAction(actionEvent1 -> {
+                    String userId = oblist.get(finalI2).getUserId();
+                    bo.deleteUser(userId);
+                    loadUsers();
+                });
+
+           });
        }
    }
 
     private JFXButton getNewModifyButton() {
-        return new JFXButton("mod user");
+        return new JFXButton("delete user");
     }
 
     private JFXButton getNewDetButton() {
@@ -334,5 +384,93 @@ public class DashboardController {
         txtEmail.setText(user.getEmail());
         txtUName.setText(user.getUserName());
         loadLogs();
+    }
+
+    public void addNewAdminOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/AdminSignUp.fxml"));
+        Object load = loader.load();
+        Scene scene = new Scene((Parent) load);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void checkOverdueOnAction(ActionEvent actionEvent) {
+        ObservableList<LogTm> oblist = FXCollections.observableArrayList();
+        List<LogDto> list = bo.getOverDueList();
+        for (LogDto d : list) {
+            oblist.add(
+                    new LogTm(
+                            d.getTid(),
+                            d.getBookName(),
+                            d.getUserName(),
+                            d.getBorrwedDate(),
+                            d.getReturnedDate(),
+                            d.isStatus(),
+                            getNewDetButton()
+                    )
+            );
+        }
+        logTable.setItems(oblist);
+        logTable.refresh();
+        for (int i = 0; i < oblist.size(); i++) {
+            int finalI = i;
+            int finalI2 = i;
+            oblist.get(i).getMod().setOnAction(event -> {
+                try {
+                    JFXButton bt = oblist.get(finalI).getMod();
+                    double x = bt.localToScreen(bt.getBoundsInLocal()).getMinX();
+                    double y = bt.localToScreen(bt.getBoundsInLocal()).getMinY();
+
+                    ContextMenu con =  loadlogPopup(oblist.get(finalI).getMod());
+
+                    con.getItems().get(0).setOnAction(actionEvent1 -> {
+                        String tid = oblist.get(finalI2).getTid();
+                        bo.updateTransaction(tid);
+                        checkOverdueOnAction(event);
+                    });
+                    con.getItems().get(1).setOnAction(actionEvent1 -> {
+
+                    });
+                    con.show(bt, x, y);
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+    public void overDueUsersOnAction(ActionEvent actionEvent) {
+        ObservableList<UserTm> oblist = FXCollections.observableArrayList();
+        List<UserDto> list = bo.getOverDueUsers();
+        for (UserDto d : list){
+            oblist.add(
+                    new UserTm(
+                            d.getUserId(),
+                            d.getUserName(),
+                            d.getName(),
+                            d.getEmail(),
+                            getNewModifyButton()
+                    )
+            );
+
+            userTable.setItems(oblist);
+            userTable.refresh();
+        }
+//        for (int i = 0; i < oblist.size(); i++) {
+//            int finalI = i;
+//            int finalI2 = i;
+//            int finalI3 = i;
+//            int finalI4 = i;
+//            oblist.get(i).getModButton().setOnAction(Event -> {
+//                oblist.get(finalI).getModButton().setOnAction(actionEvent1 -> {
+//                    String userId = oblist.get(finalI2).getUserId();
+//                    bo.deleteUser(userId);
+//                    loadUsers();
+//                });
+//
+//            });
+//        }
     }
 }

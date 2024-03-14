@@ -62,16 +62,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="userTable" layoutX="25.0" layoutY="75.0" prefHeight="480.0" prefWidth="889.0">
+                        <TableView fx:id="userTable" layoutX="12.0" layoutY="66.0" prefHeight="489.0" prefWidth="897.0">
                           <columns>
                             <TableColumn fx:id="UserColUID" prefWidth="75.0" text="User_ID" />
                             <TableColumn fx:id="UserColUname" prefWidth="155.333251953125" text="User Name" />
                               <TableColumn fx:id="userColName" prefWidth="220.6666259765625" text="Name" />
-                              <TableColumn fx:id="userColEmail" prefWidth="238.4444580078125" text="Email" />
-                              <TableColumn fx:id="userColMod" prefWidth="77.5555419921875" text="Modify" />
-                              <TableColumn fx:id="userColDet" prefWidth="98.444580078125" text="Details" />
+                              <TableColumn fx:id="userColEmail" prefWidth="315.111083984375" text="Email" />
+                              <TableColumn fx:id="userColMod" prefWidth="128.2222900390625" text="Modify" />
                           </columns>
                         </TableView>
+                        <JFXButton layoutX="31.0" layoutY="21.0" onAction="#addNewAdminOnAction" text="Add new Admin" />
+                        <JFXButton layoutX="802.0" layoutY="21.0" onAction="#overDueUsersOnAction" text="Overdue Users" />
                      </children>
                   </AnchorPane>
             </content>
@@ -91,6 +92,7 @@
                               <TableColumn fx:id="logColOptions" prefWidth="126.66670735677087" text="Options" />
                           </columns>
                         </TableView>
+                        <JFXButton layoutX="798.0" layoutY="22.0" onAction="#checkOverdueOnAction" text="Check Overdue" />
                      </children>
                   </AnchorPane>
               </content>
