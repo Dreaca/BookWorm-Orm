@@ -15,4 +15,12 @@ public class LogDto {
     private LocalDate borrwedDate;
     private LocalDate returnedDate;
     private boolean status;
+
+    public LogDto(String tid, String bookName, LocalDate borrwedDate, LocalDate returnedDate, boolean status) {
+        Tid = tid;
+        this.bookName = bookName;
+        this.borrwedDate = borrwedDate;
+        this.returnedDate = returnedDate;
+        this.status = status;
+    }
 }

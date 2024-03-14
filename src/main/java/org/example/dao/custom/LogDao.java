@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface LogDao extends SuperDao {
     List<Log> getAll();
+
+    List<Log> getAllFor(String text);
 }

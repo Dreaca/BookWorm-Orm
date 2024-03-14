@@ -17,7 +17,25 @@ public class LogTm {
     private LocalDate borrwedDate;
     private LocalDate returnedDate;
 
-    private boolean status;
+    private String  status;
 
     private JFXButton mod;
+
+    public LogTm(String tid, String bookName, LocalDate borrwedDate, LocalDate returnedDate, boolean status) {
+        Tid = tid;
+        this.bookName = bookName;
+        this.borrwedDate = borrwedDate;
+        this.returnedDate = returnedDate;
+        this.status = status? "returned":"Due";
+    }
+
+    public LogTm(String tid, String bookName, String userName, LocalDate borrwedDate, LocalDate returnedDate, boolean status, JFXButton mod) {
+        Tid = tid;
+        this.bookName = bookName;
+        this.userName = userName;
+        this.borrwedDate = borrwedDate;
+        this.returnedDate = returnedDate;
+        this.status = status? "returned":"due";
+        this.mod = mod;
+    }
 }

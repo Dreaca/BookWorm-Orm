@@ -113,7 +113,7 @@ public class DashboardController {
         LogTID.setCellValueFactory(new PropertyValueFactory<>("Tid"));
         logColBookName.setCellValueFactory(new PropertyValueFactory<>("bookName"));
         logColUserName.setCellValueFactory(new PropertyValueFactory<>("userName"));
-        logBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
+        logBorrowDate.setCellValueFactory(new PropertyValueFactory<>("borrwedDate"));
         logColRetDate.setCellValueFactory(new PropertyValueFactory<>("returnedDate"));
         logColStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         logColOptions.setCellValueFactory(new PropertyValueFactory<>("mod"));

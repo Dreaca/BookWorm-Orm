@@ -34,14 +34,16 @@ public class LoginController {
                 loadAdminDash();
             }
             else{
-                loadUserDash();
+                loadUserDash(userName);
             }
         }
     }
 
-    private void loadUserDash() throws IOException {
+    private void loadUserDash(String userName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/userDash.fxml"));
         Object load = loader.load();
+        UserDashController controller = loader.getController();
+        controller.setUp(userName);
         Stage stage = new Stage();
         Scene scene = new Scene((Parent) load);
         stage.setScene(scene);

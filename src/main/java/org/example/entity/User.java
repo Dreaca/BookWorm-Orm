@@ -1,9 +1,6 @@
 package org.example.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -17,10 +14,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @ToString
+@Table()
 public class User {
     @Id
     private String userId;
     private String name;
+    @Column(unique = true)
     private String userName;
 
     private String email;
