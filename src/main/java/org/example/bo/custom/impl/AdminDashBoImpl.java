@@ -147,4 +147,9 @@ public class AdminDashBoImpl implements AdminDashBo {
     public void deleteBook(String bookId) {
         booksDao.deleteBook(bookId);
     }
+
+    @Override
+    public void deleteTransaction(String tid) {
+        lgdao.delete(tid);
+    }
 }

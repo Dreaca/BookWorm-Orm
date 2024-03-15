@@ -18,6 +18,7 @@ import org.example.model.BookTm;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class BookFormController {
 
@@ -51,7 +52,7 @@ public class BookFormController {
     @FXML
     private Label txtBranchName;
 
-    private AdminDashBo bo = (AdminDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.ADMIN);
+    AdminDashBo bo = (AdminDashBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.ADMIN);
 
     @FXML
     void addNewBookOnAction(ActionEvent event) throws IOException {
@@ -105,7 +106,6 @@ public class BookFormController {
         booktbl.refresh();
         for (int i = 0; i < oblist.size(); i++) {
             int finalI = i;
-            int finalI2 = i;
             int finalI1 = i;
             oblist.get(i).getButton().setOnAction(event -> {
                 try {
@@ -113,7 +113,7 @@ public class BookFormController {
                     double x = bt.localToScreen(bt.getBoundsInLocal()).getMinX();
                     double y = bt.localToScreen(bt.getBoundsInLocal()).getMinY();
 
-                    ContextMenu con =  loadPopup(oblist.get(finalI).getButton());
+                    ContextMenu con =  loadPopup();
 
                     con.getItems().get(0).setOnAction(actionEvent1 -> {
                         try {
@@ -142,7 +142,7 @@ public class BookFormController {
                 book.getTitle(),
                 book.getAuthor(),
                 book.getGenre(),
-                book.getAvailability()=="available",
+                Objects.equals(book.getAvailability(), "available"),
                 txtBranchId.getText()
         );
 
@@ -161,7 +161,7 @@ public class BookFormController {
     private JFXButton getModButton() {
         return new JFXButton("options");
     }
-    public ContextMenu loadPopup(JFXButton modifyButton) throws IOException {
+    public ContextMenu loadPopup() throws IOException {
         ContextMenu con = new ContextMenu();
         MenuItem button1 = new MenuItem("Update");
         MenuItem button2 = new MenuItem("Delete");

@@ -127,4 +127,14 @@ public class LogDaoImpl implements LogDao {
         return logList;
     }
 
+    @Override
+    public void delete(String tid) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Log load = session.load(Log.class, tid);
+        session.delete(load);
+        transaction.commit();
+        session.close();
+    }
+
 }

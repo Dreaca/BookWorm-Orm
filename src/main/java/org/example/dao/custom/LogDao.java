@@ -20,4 +20,6 @@ public interface LogDao extends SuperDao {
     Log search(String tid);
 
     List<Log> getOverDueList();
+
+    void delete(String tid);
 }

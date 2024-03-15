@@ -460,7 +460,7 @@ public class DashboardController {
                         checkOverdueOnAction(event);
                     });
                     con.getItems().get(1).setOnAction(actionEvent1 -> {
-
+                        bo.deleteTransaction(oblist.get(finalI2).getTid());
                     });
                     con.show(bt, x, y);
 
