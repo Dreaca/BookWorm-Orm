@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.JFXToggleNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.LoginBo;
@@ -19,7 +22,9 @@ import java.io.IOException;
 
 public class LoginController {
 
-    public JFXToggleButton toggleButton;
+    public JFXToggleNode toggleButton;
+    public TextField txtShowPassword;
+    public ImageView toggleImage;
     @FXML
     private PasswordField txtPassword;
 
@@ -37,10 +42,10 @@ public class LoginController {
             return;
         }
 
-      /*  if (!RegexUtil.matchesRegex(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+        if (!RegexUtil.matchesRegex(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
             new Alert(Alert.AlertType.ERROR, "Invalid password").show();
             return;
-        }*/
+        }
 
         if (bo.validate(userName,password)) {
             Stage window = (Stage) txtUsername.getScene().getWindow();
@@ -109,14 +114,17 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    private void togglePasswordVisibility() {
-        /*isPasswordVisible = !isPasswordVisible;
-        if (isPasswordVisible) {
-            txtPassword.setText(txtPassword.getText());
-        } else {
-            String hiddenText = "*".repeat(txtPassword.getText().length());
-            txtPassword.setText(hiddenText);
-        }*/ //DOES NOT WORK
+
+    public void showPassword(MouseEvent event) {
+        String text = txtPassword.getText();
+        txtShowPassword.setText(text);
+        txtShowPassword.setVisible(true);
+        toggleImage.setImage(new Image("assets/hide.png"));
+
+    }
+
+    public void hidePassword(MouseEvent mouseEvent) {
+        txtShowPassword.setVisible(false);
+        toggleImage.setImage(new Image("assets/view.png"));
     }
 }
