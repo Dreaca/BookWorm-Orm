@@ -1,7 +1,6 @@
 package org.example.controller;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -12,40 +11,20 @@ import org.example.bo.BoFactory;
 import org.example.bo.custom.BooksBo;
 import org.example.dto.BookDto;
 
-public class AddnewBookController {
+public class UpdateBookController {
+    private String bookId;
+    public AnchorPane root;
+    public Label txtBranchId;
+    public Label txtBranchName;
+    public TextField txtBookTitle;
+    public TextField txtAuthor;
+    public TextField txtGenre;
+    public CheckBox isAvailable;
 
-    @FXML
-    private CheckBox isAvailable;
+    BooksBo bo = (BooksBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.BOOKS);
 
-    @FXML
-    private AnchorPane root;
-
-    @FXML
-    private TextField txtAuthor;
-
-    @FXML
-    private TextField txtBookTitle;
-
-    @FXML
-    private Label txtBranchId;
-
-    @FXML
-    private Label txtBranchName;
-
-    @FXML
-    private TextField txtGenre;
-
-    private BooksBo bo = (BooksBo) BoFactory.getBoFactory().getBo(BoFactory.BoTypes.BOOKS);
-
-    @FXML
-    void cancelOnAction(ActionEvent event) {
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void saveBookOnAction(ActionEvent event) {
-        String aBookId = bo.getABookId();
+    public void updateBookOnAction(ActionEvent event) {
+        String aBookId = bookId;
         String branchName = txtBranchName.getText();
         String bookTitle = txtBookTitle.getText();
         String authorText = txtAuthor.getText();
@@ -67,12 +46,25 @@ public class AddnewBookController {
             return;
         }
 
-        bo.saveThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,branchName));
+        bo.updateThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,branchName));
 
     }
-    public void setBranchAndName(String branchId, String branchName){
-        this.txtBranchId.setText(branchId);
-        this.txtBranchName.setText(branchName);
+
+    public void cancelOnAction(ActionEvent event) {
+       Stage stage = (Stage) root.getScene().getWindow();
+       stage.close();
     }
 
+    public void setBookID(BookDto book) {
+        this.bookId = book.getBookId();
+        txtBookTitle.setText(book.getTitle());
+        txtAuthor.setText(book.getAuthor());
+        txtGenre.setText(book.getGenre());
+        isAvailable.setSelected(book.isAvailability());
+    }
+
+    public void setBranchAndName(String branchId, String branchName) {
+        txtBranchId.setText(branchId);
+        txtBranchName.setText(branchName);
+    }
 }

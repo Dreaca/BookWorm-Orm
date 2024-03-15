@@ -21,4 +21,8 @@ public interface BooksDao extends SuperDao {
     void updateAvailabilityFalse(Book search);
 
     void updateAvailability(Book search1);
+
+    void update(Book book);
+
+    void deleteBook(String bookId);
 }

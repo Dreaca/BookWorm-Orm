@@ -142,4 +142,45 @@ public class BooksDaoImpl implements BooksDao {
         }
     }
 
+    @Override
+    public void update(Book book) {
+        Transaction transaction = null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+            Book load = session.load(Book.class, book.getBookId());
+
+            load.setTitle(book.getTitle());
+            load.setAvailability(book.isAvailability());
+            load.setAuthor(book.getAuthor());
+            load.setGenre(book.getGenre());
+            load.setBranch(book.getBranch());
+
+
+
+            session.update(load);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteBook(String bookId) {
+        Transaction transaction = null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+            Book load = session.load(Book.class, bookId);
+            session.delete(load);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
 }

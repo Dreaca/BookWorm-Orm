@@ -37,10 +37,10 @@ public class LoginController {
             return;
         }
 
-        if (!RegexUtil.matchesRegex(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+      /*  if (!RegexUtil.matchesRegex(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
             new Alert(Alert.AlertType.ERROR, "Invalid password").show();
             return;
-        }
+        }*/
 
         if (bo.validate(userName,password)) {
             Stage window = (Stage) txtUsername.getScene().getWindow();

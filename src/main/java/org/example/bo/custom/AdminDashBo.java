@@ -30,4 +30,6 @@ public interface AdminDashBo extends SuperBo{
     List<LogDto> getOverDueList();
 
     List<UserDto> getOverDueUsers();
+
+    void deleteBook(String bookId);
 }

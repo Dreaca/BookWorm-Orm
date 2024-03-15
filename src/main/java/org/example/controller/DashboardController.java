@@ -388,9 +388,13 @@ public class DashboardController {
 
     }
 
-    public void logoutOnAction(ActionEvent actionEvent) {
-        Stage window = (Stage) root.getScene().getWindow();
-        window.close();
+    public void logoutOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/login.fxml"));
+        Stage stage = (Stage) root.getScene().getWindow();
+        Object load = loader.load();
+        Scene scene = new Scene((Parent) load);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void cancelUpdate(ActionEvent actionEvent) {

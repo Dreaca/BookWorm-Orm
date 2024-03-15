@@ -142,4 +142,9 @@ public class AdminDashBoImpl implements AdminDashBo {
         }
         return list;
     }
+
+    @Override
+    public void deleteBook(String bookId) {
+        booksDao.deleteBook(bookId);
+    }
 }

@@ -8,9 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.example.bo.BoFactory;
@@ -67,10 +65,6 @@ public class BookFormController {
         stage.show();
     }
 
-    @FXML
-    void searchOnAction(ActionEvent event) {
-
-    }
     public void setBranchNameId(String branchId,String branchName){
         System.out.println(1);
         txtBranchId.setText(branchId);
@@ -103,13 +97,77 @@ public class BookFormController {
                             dto.getGenre(),
                             dto.isAvailability(),
                             dto.getBranchName(),
-                            new JFXButton()
+                            getModButton()
                     )
             );
         }
         booktbl.setItems(oblist);
         booktbl.refresh();
+        for (int i = 0; i < oblist.size(); i++) {
+            int finalI = i;
+            int finalI2 = i;
+            int finalI1 = i;
+            oblist.get(i).getButton().setOnAction(event -> {
+                try {
+                    JFXButton bt = oblist.get(finalI).getButton();
+                    double x = bt.localToScreen(bt.getBoundsInLocal()).getMinX();
+                    double y = bt.localToScreen(bt.getBoundsInLocal()).getMinY();
 
+                    ContextMenu con =  loadPopup(oblist.get(finalI).getButton());
+
+                    con.getItems().get(0).setOnAction(actionEvent1 -> {
+                        try {
+                            loadUpdateBook(oblist.get(finalI1));
+                            loadBooks();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                    con.getItems().get(1).setOnAction(actionEvent1 -> {
+                            bo.deleteBook(oblist.get(finalI).getBookId());
+                            loadBooks();
+                    });
+                    con.show(bt, x, y);
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+    }
+
+    private void loadUpdateBook(BookTm book) throws IOException {
+        BookDto dto = new BookDto(
+                book.getBookId(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getGenre(),
+                book.getAvailability()=="available",
+                txtBranchId.getText()
+        );
+
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/updateBook.fxml"));
+        Object load = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene((Parent) load);
+        stage.setScene(scene);
+        UpdateBookController controller = loader.getController();
+        controller.setBookID(dto);
+        controller.setBranchAndName(txtBranchId.getText(),txtBranchName.getText());
+        stage.show();
+    }
+
+    private JFXButton getModButton() {
+        return new JFXButton("options");
+    }
+    public ContextMenu loadPopup(JFXButton modifyButton) throws IOException {
+        ContextMenu con = new ContextMenu();
+        MenuItem button1 = new MenuItem("Update");
+        MenuItem button2 = new MenuItem("Delete");
+        con.getItems().addAll(button1, button2);
+
+        return con;
     }
 
 }

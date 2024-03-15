@@ -22,7 +22,7 @@ public class BoFactory {
             case USERDASH:
                 return new UserDashBoImpl();
             case BOOKS:
-                return new SaveBooksBoImpl();
+                return new BooksBoImpl();
             default:
                 return null;
         }

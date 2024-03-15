@@ -5,6 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +20,7 @@ import org.example.dto.UserDto;
 import org.example.model.BookTm;
 import org.example.model.LogTm;
 
+import java.io.IOException;
 import java.util.List;
 
 public class UserDashController {
@@ -250,9 +254,13 @@ public class UserDashController {
         changePass.setText(txtPassWord.getText());
     }
 
-    public void logoutOnAction(ActionEvent actionEvent) {
-        Stage window = (Stage) root.getScene().getWindow();
-        window.close();
+    public void logoutOnAction(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/view/login.fxml"));
+        Stage stage = (Stage) root.getScene().getWindow();
+        Object load = loader.load();
+        Scene scene = new Scene((Parent) load);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void cancelUpdate(ActionEvent actionEvent) {
