@@ -12,6 +12,7 @@ import org.example.bo.custom.BooksBo;
 import org.example.dto.BookDto;
 
 public class UpdateBookController {
+    public TextField txtBookCount;
     private String bookId;
     public AnchorPane root;
     public Label txtBranchId;
@@ -29,6 +30,7 @@ public class UpdateBookController {
         String bookTitle = txtBookTitle.getText();
         String authorText = txtAuthor.getText();
         String genreText = txtGenre.getText();
+        int count  = Integer.parseInt(txtBookCount.getText());
         boolean availability = isAvailable.isSelected();
 
         if (!authorText.matches("^[a-zA-Z\\s.'-]{3,}$")) {
@@ -46,7 +48,7 @@ public class UpdateBookController {
             return;
         }
 
-        bo.updateThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,branchName));
+        bo.updateThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,count,branchName));
 
     }
 
@@ -61,6 +63,8 @@ public class UpdateBookController {
         txtAuthor.setText(book.getAuthor());
         txtGenre.setText(book.getGenre());
         isAvailable.setSelected(book.isAvailability());
+        txtBookCount.setText(String.valueOf(book.getBookCount()));
+
     }
 
     public void setBranchAndName(String branchId, String branchName) {

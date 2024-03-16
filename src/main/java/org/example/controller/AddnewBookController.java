@@ -14,6 +14,7 @@ import org.example.dto.BookDto;
 
 public class AddnewBookController {
 
+    public TextField txtCount;
     @FXML
     private CheckBox isAvailable;
 
@@ -51,6 +52,7 @@ public class AddnewBookController {
         String authorText = txtAuthor.getText();
         String genreText = txtGenre.getText();
         boolean availability = isAvailable.isSelected();
+        int count = Integer.parseInt(txtCount.getText());
 
         if (!authorText.matches("^[a-zA-Z\\s.'-]{3,}$")) {
             new Alert(Alert.AlertType.ERROR, "Invalid author").show();
@@ -67,7 +69,9 @@ public class AddnewBookController {
             return;
         }
 
-        bo.saveThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,branchName));
+        bo.saveThisBook(new BookDto(aBookId,bookTitle,authorText,genreText,availability,count,branchName));
+        Stage window = (Stage) root.getScene().getWindow();
+        window.close();
 
     }
     public void setBranchAndName(String branchId, String branchName){

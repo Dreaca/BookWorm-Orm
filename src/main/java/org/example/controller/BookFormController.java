@@ -22,6 +22,7 @@ import java.util.Objects;
 
 public class BookFormController {
 
+    public TableColumn bookColBookCount;
     @FXML
     private TableColumn<?, ?> bookAuthor;
 
@@ -64,6 +65,7 @@ public class BookFormController {
         AddnewBookController controller = loader.getController();
         controller.setBranchAndName(txtBranchId.getText(),txtBranchName.getText());
         stage.show();
+        loadBooks();
     }
 
     public void setBranchNameId(String branchId,String branchName){
@@ -82,6 +84,7 @@ public class BookFormController {
         bookAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         bookGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         bookAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        bookColBookCount.setCellValueFactory(new PropertyValueFactory<>("bookCount"));
         bookBranch.setCellValueFactory(new PropertyValueFactory<>("branchName"));
         bookOptions.setCellValueFactory(new PropertyValueFactory<>("button"));
     }
@@ -97,6 +100,7 @@ public class BookFormController {
                             dto.getAuthor(),
                             dto.getGenre(),
                             dto.isAvailability(),
+                            dto.getBookCount(),
                             dto.getBranchName(),
                             getModButton()
                     )
@@ -143,6 +147,7 @@ public class BookFormController {
                 book.getAuthor(),
                 book.getGenre(),
                 Objects.equals(book.getAvailability(), "available"),
+                book.getBookCount(),
                 txtBranchId.getText()
         );
 

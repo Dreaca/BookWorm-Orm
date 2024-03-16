@@ -14,14 +14,16 @@ public class BookTm {
     private String author;
     private String genre;
     private String availability;
+    private int bookCount;
 
-    public BookTm(String bookId, String title, String author, String genre, boolean availability, String branchName, JFXButton button) {
+    public BookTm(String bookId, String title, String author, String genre, boolean availability,int bookCount, String branchName, JFXButton button) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.genre = genre;
         this.availability = availability ? "available":"borrowed/returned";
         this.branchName = branchName;
+        this.bookCount = bookCount;
         this.button = button;
     }
 

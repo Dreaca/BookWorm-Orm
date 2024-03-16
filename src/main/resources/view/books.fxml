@@ -11,12 +11,13 @@
       <TableView fx:id="booktbl" layoutX="38.0" layoutY="106.0" prefHeight="523.0" prefWidth="931.0" style="-fx-border-color: cyan;">
           <columns>
               <TableColumn fx:id="bookId" prefWidth="75.0" text="Book_ID" />
-              <TableColumn fx:id="bookTitle" prefWidth="206.88885498046875" text="Title" />
-              <TableColumn fx:id="bookAuthor" prefWidth="214.44439697265625" text="Author" />
-              <TableColumn fx:id="bookGenre" prefWidth="117.11114501953125" text="Genre" />
-              <TableColumn fx:id="bookAvailability" prefWidth="90.4444580078125" text="Availability" />
-              <TableColumn fx:id="bookBranch" prefWidth="111.333251953125" text="Branch" />
-              <TableColumn fx:id="bookOptions" prefWidth="101.111083984375" text="Option" />
+              <TableColumn fx:id="bookTitle" prefWidth="155.77777862548828" text="Title" />
+              <TableColumn fx:id="bookAuthor" prefWidth="193.77774047851562" text="Author" />
+              <TableColumn fx:id="bookGenre" prefWidth="108.88882446289062" text="Genre" />
+              <TableColumn fx:id="bookAvailability" prefWidth="85.5555419921875" text="Availability" />
+         <TableColumn fx:id="bookColBookCount" prefWidth="75.0" text="Count" />
+              <TableColumn fx:id="bookBranch" prefWidth="123.111083984375" text="Branch" />
+              <TableColumn fx:id="bookOptions" prefWidth="108.22222900390625" text="Option" />
           </columns>
       </TableView>
    <JFXButton layoutX="828.0" layoutY="64.0" onAction="#addNewBookOnAction" prefHeight="25.0" prefWidth="123.0" style="-fx-border-color: lime;" text="Add New Book" />

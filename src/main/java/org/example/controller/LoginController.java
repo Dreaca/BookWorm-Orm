@@ -30,7 +30,6 @@ public class LoginController {
 
     @FXML
     private TextField txtUsername;
-    private boolean isPasswordVisible = false;
 
     @FXML
     void loginOnAction(ActionEvent event) throws IOException {

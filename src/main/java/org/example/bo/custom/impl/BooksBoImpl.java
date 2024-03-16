@@ -26,6 +26,7 @@ public class BooksBoImpl implements BooksBo {
                 bookDto.getAuthor(),
                 bookDto.getGenre(),
                 bookDto.isAvailability(),
+                bookDto.getBookCount(),
                 b
         ));
     }
@@ -40,6 +41,7 @@ public class BooksBoImpl implements BooksBo {
                 bookDto.getAuthor(),
                 bookDto.getGenre(),
                 bookDto.isAvailability(),
+                bookDto.getBookCount(),
                 b
         ));
     }

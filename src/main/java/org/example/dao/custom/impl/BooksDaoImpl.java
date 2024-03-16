@@ -114,7 +114,11 @@ public class BooksDaoImpl implements BooksDao {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             transaction = session.beginTransaction();
             Book load = session.load(Book.class, search.getBookId());
-            load.setAvailability(false);
+
+            load.setBookCount(load.getBookCount()-1);
+            load.setAvailability(load.getBookCount()>0);
+
+            System.out.println(load.getBookCount());
             session.update(load);
             transaction.commit();
         } catch (HibernateException e) {
@@ -131,6 +135,7 @@ public class BooksDaoImpl implements BooksDao {
         try (Session session = FactoryConfiguration.getInstance().getSession()) {
             transaction = session.beginTransaction();
             Book load = session.load(Book.class, search.getBookId());
+            load.setBookCount(load.getBookCount()+1);
             load.setAvailability(true);
             session.update(load);
             transaction.commit();
@@ -151,6 +156,7 @@ public class BooksDaoImpl implements BooksDao {
 
             load.setTitle(book.getTitle());
             load.setAvailability(book.isAvailability());
+            load.setBookCount(book.getBookCount());
             load.setAuthor(book.getAuthor());
             load.setGenre(book.getGenre());
             load.setBranch(book.getBranch());

@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.example.bo.BoFactory;
 import org.example.bo.custom.SignUpBo;
 import org.example.dto.UserDto;
@@ -66,6 +67,8 @@ public class SignUpController {
             boolean b = sbo.saveUser(new UserDto(name, userName, passwordText, email));
             if (b){
                 new Alert(Alert.AlertType.CONFIRMATION,"User Saved Successfully").show();
+                Stage window = (Stage) txtPassword.getScene().getWindow();
+                window.close();
             }
         }
     }

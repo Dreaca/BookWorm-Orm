@@ -52,6 +52,7 @@ public class AdminDashBoImpl implements AdminDashBo {
                         b.getAuthor(),
                         b.getGenre(),
                         b.isAvailability(),
+                        b.getBookCount(),
                         b.getBranch().getLocation()
                     )
             );

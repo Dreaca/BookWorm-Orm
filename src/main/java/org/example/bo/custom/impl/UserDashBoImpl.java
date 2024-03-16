@@ -34,6 +34,7 @@ public class UserDashBoImpl implements UserDashBo {
                         b.getAuthor(),
                         b.getGenre(),
                         b.isAvailability(),
+                            b.getBookCount(),
                             b.getBranch().getLocation()
                     )
             );
@@ -108,6 +109,7 @@ public class UserDashBoImpl implements UserDashBo {
                book.getAuthor(),
                book.getGenre(),
                book.isAvailability(),
+               book.getBookCount(),
                book.getBranch().getLocation()
                );
     }

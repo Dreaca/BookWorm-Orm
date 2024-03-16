@@ -45,6 +45,7 @@ public class UserDashController {
     public JFXButton btnProfCancel;
     public AnchorPane root;
     public TextField searchTxt;
+    public TableColumn bookCount;
     @FXML
     private TableColumn<?, ?> bookAuthor;
 
@@ -82,6 +83,7 @@ public class UserDashController {
                             dto.getAuthor(),
                             dto.getGenre(),
                             dto.isAvailability(),
+                            dto.getBookCount(),
                             dto.getBranchName(),
                             loadJFXButton()
                     ));
@@ -122,6 +124,7 @@ public class UserDashController {
                         dto.getAuthor(),
                         dto.getGenre(),
                         dto.isAvailability(),
+                        dto.getBookCount(),
                         dto.getBranchName(),
                         loadJFXButton()
                     )
@@ -159,6 +162,7 @@ public class UserDashController {
         bookAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         bookGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         bookAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        bookCount.setCellValueFactory(new PropertyValueFactory<>("bookCount"));
         bookBranch.setCellValueFactory(new PropertyValueFactory<>("branchName"));
         bookOptions.setCellValueFactory(new PropertyValueFactory<>("button"));
 
